@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 1350px;
+    height: 50px;
+}
+
+.nav-link {
+    text-decoration : 20px;
+    color: rgb(67, 67, 70);
+}
+
+.nav-item {
+    text-align: center;
+    width : 150px;
+}
+
+.c_image {
+    margin: 0 auto;
+    width: 1300px;
+    height: 350px;
+    /* background-color: rgb(155, 223, 200); */
+    
+}
+
+.image {
+	width: 1300px;
+	height: 270px;
+	border: 1px solid brown;
+}
+
+h6 {
+    padding-top: 15px;
+}
+
+.l1 {
+    border: 0.5x solid rgb(124, 121, 121);
+    opacity: 0.2;
+}
+
+.c_review{
+    margin: 0 auto;
+    width : 1300px;
+    height: 750px;
+    /* background-color: cornflowerblue; */
+}
+
+.review_score {
+    margin: 0 auto;
+    width : 400px;
+    height: 180px;
+    border : 1px solid blue;
+    /*background-color: rgb(192, 202, 97);*/
+}
+
+
+
+.container {
+	text-align: center;
+	margin: 0 auto;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="sql">
+ 	<insert id="insert">
+ 		INSERT INTO review VALUES(#{review_id}, #{review_score}, #{review_content}, #{review_regdate})
+ 	</insert>
+ 	
+ 	<select id="getBoardList" resultType="boardVO">
+ 		SELECT * FROM review
+ 	</select>
+ 	
+ </mapper>
+<!-- 
+
+ 	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="id" />
+        <result property="pwd" column="pwd" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap>
+
+ -->
