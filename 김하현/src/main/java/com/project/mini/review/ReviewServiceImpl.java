@@ -1,4 +1,4 @@
-package com.root.biz.board;
+package com.project.mini.review;
 
 import java.util.List;
 
@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("BoardService")
-public class BoardServiceImpl implements BoardService{
+public class ReviewServiceImpl implements ReviewService{
 	@Autowired
-	private BoardDAO boardDAO;
+	private ReviewDAO boardDAO;
 
 	@Override
-	public void insertBoard(BoardBean bb) {
+	public void insertBoard(ReviewVO bb) {
 		System.out.println("###[BoardServiceImpl.insertBoard]");
 		boardDAO.insertBoard(bb);
 	}
 
 	@Override
-	public List<BoardBean> getBoardlist(int pageNum) {
+	public List<ReviewVO> getBoardlist(int pageNum) {
 		System.out.println("###[BoardServiceImpl.getBoardlist]");
 		return boardDAO.getBoardList(pageNum);
 	}

@@ -1,8 +1,8 @@
-package com.root.biz.board;
+package com.project.mini.review;
 
 import java.util.Date;
 
-public class BoardBean {
+public class ReviewVO {
 	private int review_id;
 	private int review_score;
 	private Date review_regdate;

@@ -1,4 +1,4 @@
-package com.root.biz.board;
+package com.project.mini.review;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDAO {
+public class ReviewDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertBoard(BoardBean bb) {
+	public void insertBoard(ReviewVO bb) {
 		System.out.println("##[BoardDAO.insertBoard]");
 		bb.setReview_regdate(new Date());
 		mybatis.insert("sql.insert", bb);
 		
 	}
 	
-	public List<BoardBean> getBoardList(int pageNum) {
+	public List<ReviewVO> getBoardList(int pageNum) {
 		System.out.println("##[BoardDAO.getBoardList]");
 		Map<String, Integer> rangeMap = new HashMap();
 		rangeMap.put("top", pageNum*5);

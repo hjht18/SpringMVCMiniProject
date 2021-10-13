@@ -1,15 +1,15 @@
-package com.root.biz.user;
+package com.project.mini.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDAO {
+public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void login(UserBean ub) {
+	public void login(MemberVO ub) {
 		mybatis.selectOne("sql.login", ub);
 	}
 

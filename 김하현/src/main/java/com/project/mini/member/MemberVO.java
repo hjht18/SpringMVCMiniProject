@@ -1,6 +1,6 @@
-package com.root.biz.user;
+package com.project.mini.member;
 
-public class UserBean {
+public class MemberVO {
 	private String user_code;
 	private int password;
 	public String getUser_code() {

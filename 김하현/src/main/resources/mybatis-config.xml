@@ -6,6 +6,6 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mappings/sql-mapper.xml"/>
+		<mapper resource="mappings/mybatis-review-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -1,15 +1,15 @@
-package com.root.biz.user;
+package com.project.mini.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("UserService")
-public class UserServiceImpl implements UserService{
+public class MemberServiceImpl implements MemberService{
 	@Autowired
-	private UserDAO userDAO;
+	private MemberDAO userDAO;
 
 	@Override
-	public void login(UserBean ub) {
+	public void login(MemberVO ub) {
 		userDAO.login(ub);
 	}
 	

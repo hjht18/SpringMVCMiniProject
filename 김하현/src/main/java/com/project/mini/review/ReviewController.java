@@ -1,4 +1,4 @@
-package com.root.biz.board;
+package com.project.mini.review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BoardController {
+public class ReviewController {
 	@Autowired
-	private BoardService boardService;
+	private ReviewService boardService;
 	
 	@RequestMapping("/insertBoard.do")
-	public void insertBoard(BoardBean bb) {
+	public void insertBoard(ReviewVO bb) {
 		System.out.println("####[BoardController.insertBoard]");
 		boardService.insertBoard(bb);
 	}
