@@ -4,13 +4,12 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
-    <meta charset='utf-8'>
     <title>리뷰 게시판</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-1.12.3.js"></script>
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery.js?ver=1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header>
@@ -42,6 +41,7 @@
         <div class="review">
             <div class="container mt-3">
                 <table class="table table-hover">
+                <!-- 
                   <tbody>
                   <c:forEach items="${ boardList }" var="board">
                     <tr>
@@ -52,16 +52,23 @@
                     </tr>
                    </c:forEach>
                   </tbody>
+                   -->
                 </table>
                 <ul class="pagination">
-  					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  					<li class="page-item"><a class="page-link" href="getBoardList.do?pageBoxSub=true">Previous</a></li>
   					<c:forEach begin="1" end="${pageTotal}" step="1" var="index">
+  					<!--
+  						<li class="page-item"><input class="page-link" type="button" value="${index}" onclick="test()"></li> 
   						<li class="page-item"><a class="page-link" href="getBoardList.do?page=${index}">${index}</a></li>
+  					-->
+  						<li class="page-item"><input class="pNum page-link" type="button" value="${index}"></li>
   					 </c:forEach>
-  					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+  					<li class="page-item"><a class="page-link" href="getBoardList.do?pageBoxAdd=true">Next</a></li>
 		  	   </ul>
            </div>
         </div>
+    </div>
+    <div class="dot1">
     </div>
              
 </body>

@@ -31,5 +31,6 @@
 
 
 
-	SELECT * FROM review WHERE review_id => 0 AND review_id =< 5;
+	SELECT * FROM review ORDER BY review_id DESC;
+	LIMIT 1, 5;
  -->
