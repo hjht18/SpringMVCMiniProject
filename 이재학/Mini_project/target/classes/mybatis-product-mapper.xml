@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO"> 
+	<resultMap id="productResult" type="product">
+		<result property="content" column="product_content"/>
+		<result property="name" column="product_name"/>
+		<result property="price" column="product_price"/>
+		<result property="image" column="product_image"/>
+	</resultMap>
+
+	<select id="selectById" resultMap = "productResult">
+		SELECT * FROM PRODUCT WHERE PRODUCT_ID = (SELECT MAX(PRODUCT_ID) FROM PRODUCT);
+	</select>
+	
+	<insert id="insert">
+		INSERT * FROM PRODUCT VALUES(PRODUCT_SEQ, #{name}, #{content}, #{price}, #{image});
+	</insert>
+</mapper>

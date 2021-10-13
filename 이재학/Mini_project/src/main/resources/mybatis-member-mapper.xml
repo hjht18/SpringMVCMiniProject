@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+
+	<select id="select" resultType="String">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = (SELECT MAX(MEMBER_ID) FROM MEMBER);
+	</select>
+</mapper>

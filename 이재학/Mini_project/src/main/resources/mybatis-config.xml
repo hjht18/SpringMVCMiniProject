@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- Alias 설정 -->
+	<typeAliases>
+		<typeAlias type="com.project.mini.product.ProductVO" alias="product"></typeAlias>
+		<typeAlias type="com.project.mini.review.ReviewVO" alias="review"></typeAlias>
+		<typeAlias type="com.project.mini.member.MemberVO" alias="member"></typeAlias>
+	</typeAliases>
+
+	<!-- SQL Mapper 설정 -->
+	<mappers>
+		<mapper resource="mybatis-product-mapper.xml" />
+		<mapper resource="mybatis-review-mapper.xml" />
+		<mapper resource="mybatis-member-mapper.xml" />
+	</mappers>
+</configuration>
+
+
