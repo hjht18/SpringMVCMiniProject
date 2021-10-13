@@ -12,7 +12,7 @@
  	]]>
  	</select>
  	
- 	<select id="getBoardList" resultType="boardVO">
+ 	<select id="getBoardList" resultType="reviewVO">
  	<![CDATA[
  		SELECT * FROM review WHERE review_id >= #{bottom} AND review_id <= #{top}
  	]]>
