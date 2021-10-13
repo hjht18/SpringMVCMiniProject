@@ -1,0 +1,296 @@
+@charset "utf-8";
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width:768px) and (max-width:991px) {
+    .logo{
+        width: 700px;
+        text-align: center;
+    }
+    .top{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+    .navi{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .navi li{
+        width: 100%;
+        text-align: center;
+    }
+    .cartlogo{
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+    .toggleBtn{
+        display: block;
+    }
+    .navi.active,
+    .cartlogo.active{
+        display: flex;
+    }
+    .imgslide{
+        height: 700px;
+        width: 700px;
+        position: relative;
+        overflow: hidden;
+        
+    }
+    .imgslide>a>img{
+        width: 100%;
+    }
+}
+
+/* Medium devices (desktops, tablets, 992px and up) */
+@media (min-width:992px) and (max-width:1200px) {
+    
+    .imgslide{
+        height: 900px;
+        width: 900px;
+        position: relative;
+        overflow: hidden;
+        
+    }
+    .imgslide>a>img{
+        width: 100%;
+    }
+}
+
+/* Large devices (Large desktops 1200px and up) */
+@media (min-width:1200px) {
+    .navi{
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+        
+    }
+    .toggleBtn{
+    display: none;
+    }
+    .logo{
+        font-size: 24px;
+    }
+    .imgslide{
+        height: 1000px;
+        width: 1000px;
+        position: relative;
+        overflow: hidden;
+        
+    }
+    .imgslide>a>img{
+        width: 100%;
+    }
+}
+
+/* Small devices (tablets, phones less than 767px) */
+
+@media (max-width: 767px){
+    .top{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+    .navi{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .navi li{
+        width: 100%;
+        text-align: center;
+    }
+    .cartlogo{
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+    .toggleBtn{
+        display: block;
+    }
+    .navi.active,
+    .cartlogo.active{
+        display: flex;
+    }
+    .imgslide{
+        width: 500px;
+        position: relative;
+        
+    }
+    .imgslide>a>img{
+        width: 500px;
+    }
+}
+
+
+*{
+    margin: 0 auto;
+    padding: 0px;
+    list-style: none;
+    font-family: "맑은 고딕";
+    color: #333333;
+}
+
+body{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+
+}
+
+.top{
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: rgb(39, 176, 110);
+padding: 8px 12px;
+}
+
+.logo{
+    font-size: 75px;
+}
+.logo i{
+    color: white;
+}
+.logo a{
+    color: white;
+}
+
+.menu{
+
+}
+
+.navi{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.navi>li{
+    padding: 8px 12px;
+}
+
+.navi>li>a{
+    height: 40px;
+    width: 80px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.navi>li>a:hover{
+    background-color: #aff330;
+    border-radius: 8px;
+}
+
+.toggleBtn{
+
+    position: absolute;
+    right: 32px;
+    font-size: 75px;
+}
+.toggleBtn i{
+    color: white
+}
+.cartlogo{
+    padding-left: 0;
+}
+.cartlogo a{
+    padding: 8px 12px;
+}
+
+
+.bodywrap{
+    height: 1000px;
+    width: 100%;
+}
+
+.imgslide{
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.imgslide>a{
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+}
+
+.imgtext{
+    height: 40px;
+    width: 120px;
+    position: absolute;
+    margin: -20px 0 0 -60px;
+    left: 50%;
+    top:50%;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 40px;
+    background-color: #aff330;
+}
+.imgtext:hover{
+    background-color: lawngreen;
+}
+
+footer{
+    height: 100px;
+    width: 100%;
+}
+
+.copy{
+        float: left;
+        height: 100px;
+        width: 50%;
+        text-align: center;
+        font-size: 16px;
+        line-height: 100px;
+    }
+
+
+
+    .btmenu{
+        float: right;
+        height: 50px;
+        width: 30%;
+        text-align: center;
+        font-size: 16px;
+        line-height: 100px;
+    }
+
+.site{
+    float: right;
+    height: 100px;
+    width: 50%;
+}
+
+.btmenu{
+    float: right;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 100px;
+}
+
+.btmenu li>a{
+    float: left;
+    width: 100px;
+    display: inline;
+}
+
+.btmenu li>a:hover{
+    font-weight: bold;
+}
