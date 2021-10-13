@@ -15,14 +15,14 @@ public class ReviewDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public void insertBoard(ReviewVO bb) {
-		System.out.println("##[BoardDAO.insertBoard]");
+		System.out.println("##[ReviewDAO.insertBoard]");
 		bb.setReview_regdate(new Date());
 		mybatis.insert("sql.insert", bb);
 		
 	}
 	
 	public List<ReviewVO> getBoardList(int pageNum) {
-		System.out.println("##[BoardDAO.getBoardList]");
+		System.out.println("##[ReviewDAO.getBoardList]");
 		Map<String, Integer> rangeMap = new HashMap();
 		rangeMap.put("top", pageNum*5);
 		rangeMap.put("bottom", pageNum*5-4);
@@ -30,7 +30,7 @@ public class ReviewDAO {
 	}
 	
 	public int boardCount() {
-		System.out.println("##[BoardDAO.boardCount]");
+		System.out.println("##[ReviewDAO.boardCount]");
 		return mybatis.selectOne("sql.boardCount");
 	}
 	

@@ -9,12 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ReviewController {
 	@Autowired
-	private ReviewService boardService;
+	private ReviewService reviewService;
 	
 	@RequestMapping("/insertBoard.do")
 	public void insertBoard(ReviewVO bb) {
 		System.out.println("####[BoardController.insertBoard]");
-		boardService.insertBoard(bb);
+		reviewService.insertBoard(bb);
 	}
 	
 	@RequestMapping("/getBoardList.do")
@@ -23,13 +23,13 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		int pageTotal = 1;
 		System.out.println("pageNum : "+pageNum);
-		int boardCount = boardService.boardCount();
+		int boardCount = reviewService.boardCount();
 		
 		pageTotal = boardCount / 5;
 		if(boardCount % 5 > 0) pageTotal += 1;
 		
 		mav.addObject("pageTotal", pageTotal);
-		mav.addObject("boardList", boardService.getBoardlist(pageNum));
+		mav.addObject("boardList", reviewService.getBoardlist(pageNum));
 		mav.setViewName("BoardTest.jsp");
 		return mav;
 	}
