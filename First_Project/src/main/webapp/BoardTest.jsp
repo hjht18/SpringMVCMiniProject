@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -44,19 +45,19 @@
                   <tbody>
                   <c:forEach items="${ boardList }" var="board">
                     <tr>
+                    	<td>${board.review_id}</td>
                         <td>${board.review_score}</td>
                         <td>${board.review_content}</td>
-                        <td>${board.review_id}</td>
                         <td>${board.review_regdate}</td>
                     </tr>
                    </c:forEach>
                   </tbody>
                 </table>
-                <ul class="pagination pagination-lg">
+                <ul class="pagination">
   					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-  					<li class="page-item"><a class="page-link" href="#">1</a></li>
-  					<li class="page-item"><a class="page-link" href="#">2</a></li>
-  					<li class="page-item"><a class="page-link" href="#">3</a></li>
+  					<c:forEach begin="1" end="${pageTotal}" step="1" var="index">
+  						<li class="page-item"><a class="page-link" href="getBoardList.do?page=${index}">${index}</a></li>
+  					 </c:forEach>
   					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 		  	   </ul>
            </div>

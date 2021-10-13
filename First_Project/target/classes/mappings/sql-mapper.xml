@@ -3,11 +3,19 @@
 
  <mapper namespace="sql">
  	<insert id="insert">
- 		INSERT INTO review VALUES(#{review_id}, #{review_score}, #{review_content}, #{review_regdate})
+ 		INSERT INTO review VALUES((SELECT NVL(MAX(review_id), 0)+1 FROM review), #{review_score}, #{review_content}, #{review_regdate})
  	</insert>
  	
+ 	<select id="boardCount" resultType="_int">
+ 	<![CDATA[
+ 		SELECT COUNT(*) FROM review
+ 	]]>
+ 	</select>
+ 	
  	<select id="getBoardList" resultType="boardVO">
- 		SELECT * FROM review
+ 	<![CDATA[
+ 		SELECT * FROM review WHERE review_id >= #{bottom} AND review_id <= #{top}
+ 	]]>
  	</select>
  	
  </mapper>
@@ -21,4 +29,7 @@
         <result property="joinDate" column="joinDate" />
 	</resultMap>
 
+
+
+	SELECT * FROM review WHERE review_id => 0 AND review_id =< 5;
  -->

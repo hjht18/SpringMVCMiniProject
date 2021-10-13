@@ -1,7 +1,9 @@
 package com.root.biz.board;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,17 @@ public class BoardDAO {
 		
 	}
 	
-	public List<BoardBean> getBoardList() {
+	public List<BoardBean> getBoardList(int pageNum) {
 		System.out.println("##[BoardDAO.getBoardList]");
-		return mybatis.selectList("sql.getBoardList");
+		Map<String, Integer> rangeMap = new HashMap();
+		rangeMap.put("top", pageNum*5);
+		rangeMap.put("bottom", pageNum*5-4);
+		return mybatis.selectList("sql.getBoardList", rangeMap);
+	}
+	
+	public int boardCount() {
+		System.out.println("##[BoardDAO.boardCount]");
+		return mybatis.selectOne("sql.boardCount");
 	}
 	
 }

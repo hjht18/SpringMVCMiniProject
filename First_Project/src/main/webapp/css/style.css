@@ -55,9 +55,12 @@ h6 {
     /*background-color: rgb(192, 202, 97);*/
 }
 
+.pagination {
+    display: block;
+    text-align: center;
+}
 
-
-.container {
-	text-align: center;
-	margin: 0 auto;
+.pagination > li{
+    display: inline-block;
+    float: none;
 }

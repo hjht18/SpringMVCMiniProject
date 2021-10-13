@@ -17,11 +17,14 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardBean> getBoardlist() {
+	public List<BoardBean> getBoardlist(int pageNum) {
 		System.out.println("###[BoardServiceImpl.getBoardlist]");
-		return boardDAO.getBoardList();
+		return boardDAO.getBoardList(pageNum);
 	}
-	
-	
+
+	@Override
+	public int boardCount() {
+		return boardDAO.boardCount();
+	}
 	
 }

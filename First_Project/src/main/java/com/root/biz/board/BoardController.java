@@ -1,12 +1,10 @@
 package com.root.biz.board;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoardController {
@@ -21,8 +19,26 @@ public class BoardController {
 	
 	
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(Model model) {
+	public ModelAndView getBoardList(@RequestParam(value="page", defaultValue="1", required=false) int pageNum) {
 		System.out.println("####[BoardController.getBoardList]");
+		ModelAndView mav = new ModelAndView();
+		int pageTotal = 1;
+		System.out.println("pageNum : "+pageNum);
+		int boardCount = boardService.boardCount();
+		
+		pageTotal = boardCount / 5;
+		if(boardCount % 5 > 0) pageTotal += 1;
+		
+		mav.addObject("pageTotal", pageTotal);
+		mav.addObject("boardList", boardService.getBoardlist(pageNum));
+		mav.setViewName("BoardTest.jsp");
+		return mav;
+	}
+	
+}
+
+/*
+ 
 		List<BoardBean> boardList = boardService.getBoardlist();
 		
 		Iterator<BoardBean> it = boardList.iterator();
@@ -31,13 +47,10 @@ public class BoardController {
 			BoardBean bb = it.next();
 			System.out.println("id : "+bb.getReview_id());
 			System.out.println("content : "+bb.getReview_content());
-			System.out.println("regdate : "+bb.getReview_regdate());
 			System.out.println("score : "+bb.getReview_score());
+			System.out.println("date : "+bb.getReview_regdate());
 		}
+		System.out.println("dot1");
 		
-		model.addAttribute("boardList", boardList);
-		return "BoardTest.jsp";
-	}
-	
-}
-
+	return "BoardTest.jsp?page="+pageNum;
+ */
