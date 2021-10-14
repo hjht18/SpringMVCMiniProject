@@ -1,5 +1,7 @@
 package com.project.mini.product;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,8 +16,16 @@ public class ProductDAO {
 		this.mybatis = mybatis;
 	}
 	
-	public ProductVO select(ProductVO vo) {
-		return mybatis.selectOne("Product.select", vo);
+	public ProductVO selectById(ProductVO vo) {
+		return mybatis.selectOne("ProductDAO.selectById",vo);
+	}
+	
+	public ProductVO selectLastest(ProductVO vo) {
+		return mybatis.selectOne("ProductDAO.selectLastest", vo);
+	}
+	
+	public List<ProductVO> selectList(ProductVO vo) {
+		return mybatis.selectList("ProductDAO.selectList", vo);
 	}
 	
 	public void insert(ProductVO vo) {

@@ -14,8 +14,5 @@ public class MemberDAO {
 		this.mybatis = mybatis;
 	}
 	
-//	public MemberVO selectById() {
-//		MemberVO member = mybatis.selectOne("MemberDAO.select");
-//		return member;
-//	}
+	
 }

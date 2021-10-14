@@ -1,5 +1,7 @@
 package com.project.mini.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,20 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
+	
 	@Override
 	public ProductVO selectById(ProductVO vo) {
-		return productDAO.select(vo);
+		return productDAO.selectById(vo);
+	}
+
+	@Override
+	public ProductVO selectLastest(ProductVO vo) {
+		return productDAO.selectLastest(vo);
+	}
+	
+	@Override
+	public List<ProductVO> getProductList(ProductVO vo) {
+		return productDAO.selectList(vo);
 	}
 
 	@Override

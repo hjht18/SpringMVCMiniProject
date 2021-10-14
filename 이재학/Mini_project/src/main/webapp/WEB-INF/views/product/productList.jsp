@@ -15,7 +15,11 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<input type="file" name="imgTest">
+	<!-- <form action="${context}/product/saveImgTest" method="post">
+		<input type="file" name="imgTest">
+		<input type="submit" value="등록">
+	</form>  -->
+	
 	<div class="container">
 		<a href="${context}/product/detail"><img src="../resources/image/productTest.png"></a>
 		<div class="py-5 text-center">
@@ -31,25 +35,23 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>CODE</th>
 						<th>상품명</th>
+						<th>설명</th>
 						<th>가격</th>
-						<th>수량</th>
+						<th>이미지 경로</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="p" items="${productList}">
 					<tr>
-						<td><a href="item.html">1</a></td>
-						<td><a href="item.html">테스트 상품1</a></td>
-						<td>10000</td>
-						<td>10</td>
+						<td>${p.code}</td>
+						<td>${p.name}</td>
+						<td><a href="${context}/product/detail?code=${p.code}">${p.content}</a></td>
+						<td>${p.price}</td>
+						<td>${p.image}</td>
 					</tr>
-					<tr>
-						<td><a href="item.html">2</a></td>
-						<td><a href="item.html">테스트 상품2</a></td>
-						<td>20000</td>
-						<td>20</td>
-					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

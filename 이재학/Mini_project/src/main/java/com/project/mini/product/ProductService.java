@@ -1,8 +1,14 @@
 package com.project.mini.product;
 
-	public interface ProductService {
+import java.util.List;
+
+public interface ProductService {
+	
+	ProductVO selectLastest(ProductVO vo);
 	
 	ProductVO selectById(ProductVO vo);
+	
+	List<ProductVO> getProductList(ProductVO vo);
 
 	void insert(ProductVO vo);
 

@@ -1,5 +1,5 @@
 package com.project.mini.member;
 
 public interface MemberService {
-	MemberVO selectById();
+	MemberVO getUser(MemberVO vo);
 }

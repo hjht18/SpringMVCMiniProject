@@ -4,17 +4,26 @@
 
 <mapper namespace="ProductDAO"> 
 	<resultMap id="productResult" type="product">
-		<result property="content" column="product_content"/>
+		<result property="code" column="product_code"/>
 		<result property="name" column="product_name"/>
+		<result property="content" column="product_content"/>
 		<result property="price" column="product_price"/>
 		<result property="image" column="product_image"/>
 	</resultMap>
 
-	<select id="selectById" resultMap = "productResult">
-		SELECT * FROM PRODUCT WHERE PRODUCT_ID = (SELECT MAX(PRODUCT_ID) FROM PRODUCT);
+	<select id="selectLastest" resultMap = "productResult">
+		SELECT * FROM PRODUCT WHERE PRODUCT_CODE = (SELECT MAX(PRODUCT_CODE) FROM PRODUCT)
+	</select>
+	
+	<select id="selectList" resultMap="productResult">
+		SELECT * FROM PRODUCT
+	</select>
+	
+	<select id="selectById" resultMap="productResult">
+		SELECT * FROM PRODUCT WHERE PRODUCT_CODE = #{code}
 	</select>
 	
 	<insert id="insert">
-		INSERT * FROM PRODUCT VALUES(PRODUCT_SEQ, #{name}, #{content}, #{price}, #{image});
+		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ, #{name}, #{content}, #{price}, #{image})
 	</insert>
 </mapper>

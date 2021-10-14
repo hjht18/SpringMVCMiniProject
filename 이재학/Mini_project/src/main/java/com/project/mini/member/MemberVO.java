@@ -5,7 +5,6 @@ public class MemberVO {
 	private int code;
 	private String id;
 	private String password;
-	private String gender;
 	private String name;
 	private String phoneNumber;
 	private String email;
@@ -15,13 +14,17 @@ public class MemberVO {
 	private String image;
 	
 	public MemberVO() {}
+
+	public int getCode() {
+		return code;
+	}
 	
-	public MemberVO(int code, String id, String password, String gender, String name, String phoneNumber, String email,
-			String zipCode, String address, String detailAddress, String image) {
+	
+	public MemberVO(int code, String id, String password, String name, String phoneNumber, String email, String zipCode,
+			String address, String detailAddress, String image) {
 		this.code = code;
 		this.id = id;
 		this.password = password;
-		this.gender = gender;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
@@ -31,20 +34,12 @@ public class MemberVO {
 		this.image = image;
 	}
 
-	public int getCode() {
-		return code;
-	}
-
 	public String getId() {
 		return id;
 	}
 
 	public String getPassword() {
 		return password;
-	}
-
-	public String getGender() {
-		return gender;
 	}
 
 	public String getName() {
@@ -87,10 +82,6 @@ public class MemberVO {
 		this.password = password;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -118,8 +109,6 @@ public class MemberVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	
 	
 	
 }
