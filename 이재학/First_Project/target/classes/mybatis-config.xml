@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.project.mini.review.ReviewVO" alias="reviewVO"/>
+		<typeAlias type="com.project.mini.product.ProductVO" alias="productVO"/>
+		<typeAlias type="com.project.mini.member.MemberVO" alias="memberVO"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappings/mybatis-review-mapper.xml"/>
+		<mapper resource="mappings/mybatis-product-mapper.xml"/>
+		<mapper resource="mappings/mybatis-member-mapper.xml"/>
+	</mappers>
+</configuration>
