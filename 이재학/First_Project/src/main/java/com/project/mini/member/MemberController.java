@@ -1,12 +1,17 @@
 package com.project.mini.member;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -32,7 +37,25 @@ public class MemberController {
 	
 	// 회원가입
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
-	public String join(MemberVO vo) {
+	public String join(MemberVO vo, Model model, HttpServletRequest request) {
+		Map<String, Boolean> errors = new HashMap<>();
+		if(!StringUtils.hasText(vo.getName())) {
+			errors.put("name", Boolean.TRUE);
+		}
+		if(!StringUtils.hasText(vo.getMemberId())) {
+			errors.put("memberId", Boolean.TRUE);
+		}
+		if(!StringUtils.hasText(vo.getPassword())) {
+			errors.put("password", Boolean.TRUE);
+		}
+		
+		if(!request.getParameter("password").equals(request.getParameter("repassword"))) {
+			errors.put("passwordValid", Boolean.TRUE);
+		}
+		if (!errors.isEmpty()) {
+			 model.addAttribute("errors", errors);
+			 return "register";
+		}
 		memberService.signUp(vo);
 		return "registerSuccess";
 	}
