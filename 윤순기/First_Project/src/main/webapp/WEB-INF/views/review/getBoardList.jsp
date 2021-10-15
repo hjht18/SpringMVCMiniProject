@@ -6,10 +6,10 @@
 <head>
     <title>리뷰 게시판</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?ver=4" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-1.12.3.js"></script>
-    <script src="js/jquery.js?ver=6"></script>
+    <script src="js/jquery.js?ver=3"></script>
 </head>
 <body>
     <header>
@@ -39,7 +39,7 @@
         </div>
         <hr class="l1">
         <div class="review">
-            <div class="container mt-3">
+            <div>
                 <table class="table table-hover">       <!-- AJAX로 리뷰 넣을 공간 -->
                 </table>
                 <ul class="pagination">

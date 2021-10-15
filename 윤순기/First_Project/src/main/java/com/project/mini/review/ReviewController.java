@@ -92,9 +92,9 @@ public class ReviewController {
 		return reviewService.getBoardlist(reviewNum);
 	}
 	
-	@RequestMapping("/test.do")
+	@RequestMapping("/reviewPaging.do")
 	@ResponseBody
-	public int testmethod(@RequestParam(value="pageNum", defaultValue="0", required=false)int reviewBoxNum) {
+	public int reviewPaging(@RequestParam(value="pageNum", defaultValue="0", required=false)int reviewBoxNum) {
 		if(reviewBoxNum < 0 ) {  
 			if(this.reviewBoxNum > 1) {
 				this.reviewBoxNum += reviewBoxNum;

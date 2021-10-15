@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 .container {
@@ -64,3 +64,36 @@ h6 {
     display: inline-block;
     float: none;
 }
+
+
+.ttb1 {
+	text-align:center;
+	text-decoration: none;
+	background-color: fuchsia;
+	display:block;
+	font-size : 17px;
+	color:black;
+}
+
+
+.table > tbody > tr {
+	text-align: center;
+	border-bottom : 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.table > tbody > tr > td:nth-child(1) {
+	width : 70px;
+	background-color:#8080ff;
+}
+
+.table > tbody > tr > td:nth-child(3) {
+	width : 70px;
+	background-color:#ff80c0;
+}
+
+.table > tbody > tr > td:last-of-type {
+	background-color:aqua;
+	width:200px;
+	
+}
+

@@ -4,7 +4,7 @@ $(function() {
 //		reviewSend();
 //	})
 	$(window).ready(function() {
-		test(0);
+		reviewPaging(0);
 	})
 	
 	
@@ -23,7 +23,6 @@ $(function() {
 			},
 			function(data) {
 				if(data.length > 0) {
-					
 					var tb = $("<tbody>");
 					for(var i=0; i<data.length; i++) {
 						var $id = data[i].review_id;
@@ -31,30 +30,28 @@ $(function() {
 						var $content = data[i].review_content;
 						var $regdate = data[i].review_regdate;
 						var row = $("<tr>").append(
-							$("<td>").text($id),"</td>",
-							$("<td>").text($score),"</td>",
-							$("<td><a href='www.naver.com'>").text($content),"</td>",
-							$("<td>").text($regdate),"</td></tbody>");
+							$("<td>").text($score),
+							$("<a class='ttb1' href='www.naver.com?index="+(i+1)+"'>").text($content),
+							$("<td>").text($id),
+							$("<td>").text($regdate));
 						tb.append(row);
 					}
 				}
 				$(".table").empty().append(tb);
+//				$(".tt1").empty().append(row);
 			}
 		);
 	};
 	
-	function test(pageNum) {
+	
+	function reviewPaging(pageNum) {
 		$.get(
-			'./test.do',
+			'./reviewPaging.do',
 			{
 				pageNum:pageNum
 			},
 			function(data) {
 				$(".pNum").first().focus();
-//				if($(".pNum").attr("value") == data) {
-//					alert("data : "+data+", value : "+$(".pNum").attr("value"));
-//					$(this).focus();
-//				}
 				reviewSend(data);
 			}
 		);
@@ -68,13 +65,13 @@ $(function() {
 	
 	$(".page_box_add").on("click", function() {
 		pageNum = 1;
-		test(pageNum);
+		reviewPaging(pageNum);
 	});
 	
 	$(".page_box_sub").on("click", function() {
 		pageNum = -1;
 		
-		test(pageNum);
+		reviewPaging(pageNum);
 	});
 	
 	
