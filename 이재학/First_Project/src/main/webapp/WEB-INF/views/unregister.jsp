@@ -16,12 +16,12 @@
 
 	<div class="container">
 		<div class="col-md-6 col-md-offset-3">
-			<form action="#">
+			<form action="unregister.do" method="post">
 				<h2>회원탈퇴</h2>
-				<div class="col-md-12">
+				<!--<div class="col-md-12">
 					<label>이메일(아이디)</label>
 				</div>
-				<div class="form-group col-md-8">
+				 <div class="form-group col-md-8">
 					<input type="email" class="form-control" placeholder="아이디를 입력해주세요">
 				</div>
 
@@ -30,7 +30,7 @@
 				</div>
 				<div class="form-group col-md-12">
 					<input type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
-				</div>
+				</div> -->
 
 				<div class="checkbox col-md-12">
 					<label>

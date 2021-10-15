@@ -45,8 +45,8 @@
 	</update>
 	
 	<!-- 로그인 -->
-	<select id="login" parameterType="memberVO" resultType="int">
-        SELECT COUNT(*)
+	<select id="login" resultMap="memberResult">
+        SELECT *
           FROM MEMBER
          WHERE MEMBER_ID = #{memberId}
            AND MEMBER_PASSWORD = #{password}
@@ -55,11 +55,11 @@
 	<!-- 회원 탈퇴(삭제) -->
 	<delete id="deleteMember">
 		<![CDATA[
-			DELETE FROM MEMBER WHERE MEMBER_ID = #{memberId}
+			DELETE FROM MEMBER WHERE MEMBER_CODE = #{memberCode}
 		]]>
 	</delete>
 	
-	<select id="select" resultType="String">
-		SELECT * FROM MEMBER WHERE MEMBER_ID = (SELECT MAX(MEMBER_ID) FROM MEMBER);
+	<select id="memberList" resultMap="memberResult">
+		SELECT * FROM MEMBER
 	</select>
 </mapper>

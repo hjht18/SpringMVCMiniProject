@@ -24,8 +24,8 @@ public class ReviewDAO {
 	public List<ReviewVO> getBoardList(int pageNum) {
 		System.out.println("##[ReviewDAO.getBoardList]");
 		Map<String, Integer> rangeMap = new HashMap();
-		rangeMap.put("top", pageNum*5);
-		rangeMap.put("bottom", pageNum*5-4);
+		rangeMap.put("top", pageNum*10);
+		rangeMap.put("bottom", pageNum*10-9);
 		return mybatis.selectList("sql.getBoardList", rangeMap);
 	}
 	

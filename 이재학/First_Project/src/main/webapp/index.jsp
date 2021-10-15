@@ -13,14 +13,13 @@
 </head>
 <body>
 	<h3>메인 페이지</h3>
-
- <h5>${login}</h5>
 <c:if test="${param.regStatus}">
 <script>
 	alert('회원가입을 축하드립니다!');
-</script></c:if>
+</script>
+</c:if>
+	<h3>${loginMember.name}</h3>
 	<br><br>
-	<a href="${context}/product/test.do">상품 테스트</a><br>
 	<a href="${context}/review/getBoardList.do">리뷰 목록 테스트</a><br>	
 	<a href="${context}/review/indexTest.do">리뷰 인덱스 테스트</a><br>
 	<hr>	

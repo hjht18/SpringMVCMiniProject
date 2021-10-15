@@ -1,5 +1,7 @@
 package com.project.mini.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +11,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
-	
-//	@Override
-//	public int login(MemberVO vo) {
-//		return memberDAO.login(vo);
-//	}
 	
 	@Override
 	public void signUp(MemberVO vo) {
@@ -34,16 +31,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMember(String memberId) {
-		memberDAO.deleteMember(memberId);
+	public void deleteMember(MemberVO vo) {
+		memberDAO.deleteMember(vo);
 	}
 	
-	// ======================= // 
 	
 	@Override
-    public int login(MemberVO vo) throws Exception {
-    
+    public MemberVO login(MemberVO vo) throws Exception{
         return memberDAO.login(vo);
 	}
+
+	@Override
+	public List<MemberVO> memberList(MemberVO vo) {
+		return memberDAO.memberList(vo);
+	}
+	
+	
 
 }

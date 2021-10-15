@@ -1,14 +1,18 @@
 package com.project.mini.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +25,12 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@ModelAttribute("memberList")
+	public List<MemberVO> memberList() {
+		MemberVO vo = new MemberVO();
+		return memberService.memberList(vo);
+	}
 	
 	// 회원가입 폼
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
@@ -67,16 +77,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-	public String modify(MemberVO vo) {
-		memberService.updateMember(vo);
-		return "redirect:/index.jsp";
+	public String modify(HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("loginMember");
+		memberService.updateMember(member);
+		session.setAttribute("loginMember", member);
+		return "redirect:/";
 	}
 	
 	
-	// 탈퇴
-	@RequestMapping("/unregister.do")
-	public String unregister() {
+	// 탈퇴 폼
+	@RequestMapping(value = "/unregister.do", method = RequestMethod.GET)
+	public String unregisterForm() {
 		return "unregister";
+	}
+	
+	// 탈퇴 로직
+	@RequestMapping(value = "/unregister.do", method = RequestMethod.POST)
+	public String unregister(HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("loginMember");
+		memberService.deleteMember(member);
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 
@@ -93,7 +114,7 @@ public class MemberController {
 	// =================================== // 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public String login(@RequestParam("memberId") String memberId
-                       , @RequestParam("password") String password) throws Exception {
+                       , @RequestParam("password") String password, HttpServletRequest request) throws Exception {
 
         String path = "";
 
@@ -102,14 +123,15 @@ public class MemberController {
         vo.setMemberId(memberId);
         vo.setPassword(password);
 
-        int result = memberService.login(vo);
+        MemberVO loginMember = memberService.login(vo);
 
-        if(result == 1) {
-            path = "registerSuccess";
+        if(loginMember != null) {
+            path = "redirect:/index.jsp";
         } else {
             path = "loginForm";
         }
-
+        HttpSession session = request.getSession();
+        session.setAttribute("loginMember", loginMember);
         return path;
 
     }

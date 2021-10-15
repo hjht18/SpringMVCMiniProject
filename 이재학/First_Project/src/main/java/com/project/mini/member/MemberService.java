@@ -1,8 +1,8 @@
 package com.project.mini.member;
 
+import java.util.List;
+
 public interface MemberService {
-	//로그인
-//	int login(MemberVO vo);
 	
 	//회원가입(회원정보입력)
 	void signUp(MemberVO vo);
@@ -14,10 +14,13 @@ public interface MemberService {
 	void updateMember(MemberVO vo);
 
 	//회원 탈퇴(삭제)
-	void deleteMember(String memberId);
+	void deleteMember(MemberVO vo);
 	
+	// 로그인
+	MemberVO login(MemberVO vo) throws Exception;
 	
-	// ===================== //
-	public int login(MemberVO vo) throws Exception;
+	// 회원 목록
+	List<MemberVO> memberList(MemberVO vo);
+	
 
 }

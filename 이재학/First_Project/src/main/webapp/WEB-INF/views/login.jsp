@@ -75,12 +75,12 @@ a{
         <div class="hr-sect">OR</div><br>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="text" id="memberId" name="memberId" class="form-control" placeholder="이메일 아이디">
+                <input type="text" id="memberId" name="${loginForm.loginId}" class="form-control" placeholder="이메일 아이디">
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="password" id="password" name="password" placeholder="패스워드" class="form-control">
+                <input type="password" id="password" name="${loginForm.password}" placeholder="패스워드" class="form-control">
             </div>
         </div>
         <div class="row">
