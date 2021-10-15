@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h3>회원가입에 성공하였습니다!</h3>
+	<button type="submit"></button>
 </body>
 </html>

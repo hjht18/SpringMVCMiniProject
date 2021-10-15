@@ -24,6 +24,6 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ, #{name}, #{content}, #{price}, #{image})
+		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, #{name}, #{content}, #{price}, #{image})
 	</insert>
 </mapper>

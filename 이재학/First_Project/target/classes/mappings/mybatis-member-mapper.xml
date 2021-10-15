@@ -23,11 +23,18 @@
 		]]>
 	</insert>
 	
+	<select id="checkDuplicate" resultMap="memberResult">
+		<![CDATA[
+			SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+		]]>
+	</select>
+	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMember">
 		<![CDATA[
 			UPDATE MEMBER
-			SET	MEMBER_NAME = #{name}
+			SET	MEMBER_PASSWORD = #{password}
+			  , MEMBER_NAME = #{name}
 		      , MEMBER_PHONENUMBER = #{phoneNum}
 			  , MEMBER_ZIPCODE   = #{postNum}
 			  , MEMBER_ADDRESS   = #{address1}

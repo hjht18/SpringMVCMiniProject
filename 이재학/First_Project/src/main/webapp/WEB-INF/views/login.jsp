@@ -62,7 +62,6 @@ a{
 <body>
 	
     <div class="simple-login-container">
-    <form action="login.do" method="post">
         <div class="row">
             <div class="col-md-12 form-group">
                 <a href="javascript:kakaoLogin();"><img src="/img/kakao_login_medium_wide.png" alt="카카오로 로그인하기" width="300px" height="45px"></a>
@@ -94,7 +93,6 @@ a{
                 <a href="register.do">아직 회원이 아니신가요? 회원이 되어 보세요</a>
             </div>
         </div>
-        </form>
     </div>
     <hr>
     <script>	

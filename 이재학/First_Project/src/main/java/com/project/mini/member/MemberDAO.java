@@ -15,15 +15,20 @@ public class MemberDAO{
 	}
 	
 	//로그인
-	public int login(MemberVO vo) {
-		System.out.println("login()으로 로그인 처리?");
-		return mybatis.selectOne("MemberDAO.login", vo);
-	}
+//	public int login(MemberVO vo) {
+//		System.out.println("login()으로 로그인 처리?");
+//		return mybatis.selectOne("MemberDAO.login", vo);
+//	}
 	
 	//회원가입(회원정보입력)
 	public void signUp(MemberVO vo) {
 		System.out.println("signUp()으로 회원 가입 처리");
 		mybatis.insert("MemberDAO.signUp", vo);
+	}
+	
+	//중복회원 검증
+	public MemberVO checkDuplicate(MemberVO vo) {
+		return (MemberVO)mybatis.selectOne("MemberDAO.checkDuplicate", vo);
 	}
 	
 	//회원정보 수정
@@ -39,5 +44,13 @@ public class MemberDAO{
 		mybatis.delete("MemberDAO.deleteMember", memberId);
 		
 	}
-	//
+	
+	// ============================ //
+	
+
+	//로그인
+		public int login(MemberVO vo) {
+			System.out.println("login()으로 로그인 처리?");
+			return mybatis.selectOne("MemberDAO.login", vo);
+		}
 }

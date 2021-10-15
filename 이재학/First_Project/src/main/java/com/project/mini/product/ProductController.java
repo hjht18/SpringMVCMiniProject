@@ -3,7 +3,9 @@ package com.project.mini.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.mini.member.MemberVO;
 
@@ -14,12 +16,12 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-//	// model에 product 추가
-//	@ModelAttribute("product")
-//	public ProductVO getProduct() {
-//		ProductVO vo = new ProductVO();
-//		return productService.selectLastest(vo);
-//	}
+	// model에 product 추가
+	@ModelAttribute("product")
+	public ProductVO getProduct() {
+		ProductVO vo = new ProductVO();
+		return productService.selectById(vo);
+	}
 	
 	// 상품 테스트
 	@RequestMapping("/test.do")
@@ -36,9 +38,25 @@ public class ProductController {
 	
 	@RequestMapping("/detail.do")
 	public String productDetail(ProductVO vo, Model model) {
-		model.addAttribute("product", productService.selectById(vo));
+//		model.addAttribute("product", productService.selectById(vo));
 		return "product/productDetail";
 	}
+	
+	
+	// 상품 등록용 관리자 페이지
+	@RequestMapping("/admin.do")
+	public String admin(ProductVO vo) {
+		return "product/adminPage";
+	}
+	
+	// 상품 등록 로직 실행 부분
+	@RequestMapping(value = "/registerProduct.do", method = RequestMethod.POST)
+	public String registerProduct(ProductVO vo) {
+		productService.insert(vo);
+		return "redirect:/product/list.do";
+	}
+	
+	
 	// 상품 이미지 등록 (미구현)
 //	@RequestMapping("/saveImgTest")
 //	@ResponseBody

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -88,7 +89,6 @@
         </div>
     </div>
     <!-- Humberger End -->
-
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
@@ -109,8 +109,8 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">아쉬파 샐러드</a></h6>
-                                    <h5>8,900원</h5>
+                                    <h6><a href="#">${productList[0].name}</a></h6>
+                                    <h5>${productList[0].formattedPrice}원</h5>
                                 </div>
                             </div>
                         </div>

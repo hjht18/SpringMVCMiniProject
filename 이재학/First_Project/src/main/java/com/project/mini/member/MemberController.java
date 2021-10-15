@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -21,24 +22,21 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("/test.do")
-	public String selectMemberAddress(MemberVO vo) {
-		
-		return "member/memberTest";
-	}
-	
-	
 	// 회원가입 폼
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
-	public String register(MemberVO vo) {
-//		memberService.signUp(vo);
+	public String registerForm(MemberVO vo) {
 		return "register";
 	}
 	
 	// 회원가입
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
-	public String join(MemberVO vo, Model model, HttpServletRequest request) {
+	public String register(MemberVO vo, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		Map<String, Boolean> errors = new HashMap<>();
+		
+		// 에러 조건 추가
+		if(memberService.checkDuplicate(vo)) {
+			errors.put("duplicateId", Boolean.TRUE);
+		}
 		if(!StringUtils.hasText(vo.getName())) {
 			errors.put("name", Boolean.TRUE);
 		}
@@ -48,17 +46,32 @@ public class MemberController {
 		if(!StringUtils.hasText(vo.getPassword())) {
 			errors.put("password", Boolean.TRUE);
 		}
-		
 		if(!request.getParameter("password").equals(request.getParameter("repassword"))) {
 			errors.put("passwordValid", Boolean.TRUE);
 		}
+		// 에러가 발생하면 attribute 등록
 		if (!errors.isEmpty()) {
 			 model.addAttribute("errors", errors);
 			 return "register";
 		}
+		redirectAttributes.addAttribute("regStatus", true);
+		// 회원가입 로직 실행 후 가입성공 폼으로 리턴
 		memberService.signUp(vo);
-		return "registerSuccess";
+		return "redirect:/index.jsp";
 	}
+	
+	// 회원 수정 폼
+	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
+	public String modifyForm(MemberVO vo) {
+		return "modify";
+	}
+	
+	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
+	public String modify(MemberVO vo) {
+		memberService.updateMember(vo);
+		return "redirect:/index.jsp";
+	}
+	
 	
 	// 탈퇴
 	@RequestMapping("/unregister.do")
@@ -66,13 +79,8 @@ public class MemberController {
 		return "unregister";
 	}
 	
-	
-	@RequestMapping("/modify.do")
-	public String modify() {
-		return "modify";
-	}
-	
-	@RequestMapping("/loginForm.do")
+
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm() {
 		return "loginForm";
 	}
@@ -82,31 +90,27 @@ public class MemberController {
 		return "addressAPIPopup";
 	}
 	
-//	// 클라이언트에서 /login.do 요청이 오면 login() 메소드가 실행됨
-//		// 실행되고 난 뒤 조건에 따라서 지정된 곳으로 포워딩됨
-//		@RequestMapping(value = "/login.do", method=RequestMethod.POST)
-//		public String login(MemberVO vo , MemberDAO memberDAO, HttpSession session) {
-//			
-//			System.out.println("로그인 인증 처리 ..");
-//			
-//			if(vo.getMemberId() == null || vo.getMemberId().equals("")) {
-//				throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다!");
-//			}
-//			
-//			if(memberDAO.getUser(vo) != null) {
-//				session.setAttribute("userName",userDAO.getUser(vo).getName());
-//				return "redirect:getBoardList.do";
-//			} else {
-//				return "login.jsp";
-//			}
-//		}
-//		
-//		@RequestMapping(value = "/login.do", method=RequestMethod.GET)
-//		public String loginView(@ModelAttribute("user") UserVO vo) {
-//			System.out.println("로그인 화면으로 이동");
-//			vo.setId("test");
-//			vo.setPassword("test123!");
-//			return "login.jsp";
-//		}
-//		
+	// =================================== // 
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    public String login(@RequestParam("memberId") String memberId
+                       , @RequestParam("password") String password) throws Exception {
+
+        String path = "";
+
+        MemberVO vo = new MemberVO();
+
+        vo.setMemberId(memberId);
+        vo.setPassword(password);
+
+        int result = memberService.login(vo);
+
+        if(result == 1) {
+            path = "registerSuccess";
+        } else {
+            path = "loginForm";
+        }
+
+        return path;
+
+    }
 }

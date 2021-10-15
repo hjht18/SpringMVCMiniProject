@@ -15,20 +15,21 @@
 	<h3>메인 페이지</h3>
 
  <h5>${login}</h5>
-
+<c:if test="${param.regStatus}">
+<script>
+	alert('회원가입을 축하드립니다!');
+</script></c:if>
 	<br><br>
-	<a href="${context}/member/test.do">멤버 테스트</a><br>
 	<a href="${context}/product/test.do">상품 테스트</a><br>
 	<a href="${context}/review/getBoardList.do">리뷰 목록 테스트</a><br>	
 	<a href="${context}/review/indexTest.do">리뷰 인덱스 테스트</a><br>
 	<hr>	
-	<a href="${context}/member/login.do">로그인 페이지</a>
 	<a href="${context}/product/list.do">상품 페이지</a><br>
 	<hr>
 	<a href="${context}/member/register.do">회원가입</a><br>
 	<a href="${context}/member/unregister.do">회원탈퇴</a><br>
 	<a href="${context}/member/modify.do">회원정보 수정</a><br>
-	<a href="${context}/member/loginForm.do">로그인 폼</a><br>
+	<a href="${context}/member/login.do">로그인 폼</a><br>
 	
 </body>
 </html>

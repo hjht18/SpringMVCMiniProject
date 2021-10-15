@@ -7,9 +7,12 @@
     <head>
         <meta charset='utf-8'>
         <title>메인 페이지</title>
-        <link href="css/style.css" type="text/css" rel="stylesheet">
-        <script src="js/jquery-1.12.3.js"></script>
-        <script src="js/script.js" defer type="text/javascript"></script>
+        <link href="${context}//css/style.css" type="text/css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+        <script src="${context}/javascript/jquery-1.12.3.js"></script>
+        <script src="${context}/javascript/script.js" defer type="text/javascript"></script>
         <script src="https://kit.fontawesome.com/e5732aa35f.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -17,7 +20,7 @@
             <nav class="top" id="menuwrap">
               <div class="logo">
                 <i class="fas fa-leaf"></i>
-                <a href="#">Fresh</a>
+                <a href="#">Fresh Salad</a>
               </div>
                   <ul class="navi">
                     <li><a href="#">퓨어주스</a>
@@ -33,10 +36,10 @@
                   </ul>
                   <ul class="cartlogo">
                     <c:if test="${sessionScope.userid == null}">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogin();"><i class="fa fa-user"></i>Login</button>
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogin();">로그인</button>
                         </c:if>
                         <c:if test="${sessionScope.userid != null}">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogout();"><i class="fa fa-user"></i> Logout</button>
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogout();">로그아웃</button>
                     </c:if>
                     <a href="#"><i class="fas fa-shopping-cart"></i></a>
                 </ul>

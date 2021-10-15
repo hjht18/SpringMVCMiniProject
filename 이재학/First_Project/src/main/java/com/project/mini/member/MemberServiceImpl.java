@@ -10,15 +10,22 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	@Override
-	public int login(MemberVO vo) {
-		return memberDAO.login(vo);
-	}
+//	@Override
+//	public int login(MemberVO vo) {
+//		return memberDAO.login(vo);
+//	}
 	
 	@Override
 	public void signUp(MemberVO vo) {
 		memberDAO.signUp(vo);
-		
+	}
+
+	@Override
+	public boolean checkDuplicate(MemberVO vo) {
+		if(memberDAO.checkDuplicate(vo) != null) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -29,6 +36,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void deleteMember(String memberId) {
 		memberDAO.deleteMember(memberId);
+	}
+	
+	// ======================= // 
+	
+	@Override
+    public int login(MemberVO vo) throws Exception {
+    
+        return memberDAO.login(vo);
 	}
 
 }
