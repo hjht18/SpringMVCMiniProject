@@ -30,7 +30,7 @@ public class ReviewController {
 		
 		mav.addObject("pageTotal", pageTotal);
 		mav.addObject("boardList", reviewService.getBoardlist(pageNum));
-		mav.setViewName("BoardTest.jsp");
+		mav.setViewName("BoardTest");
 		return mav;
 	}
 	
