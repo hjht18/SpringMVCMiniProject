@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- 컨텍스트 경로 설정 => ${context} -->
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
@@ -40,8 +44,8 @@
 
 	<div class="container" style="display: flex; justify-content: center;">
 		<div class="row">
-			<form class="form-horizontal" action="modify.do" method="post">
 				<fieldset>
+			<form class="form-horizontal" action="modify.do" method="post">
 					<br>
 					<br>
 
@@ -115,7 +119,7 @@
 								style="position: relative; bottom: 20px;" id="address1"
 								value="${loginMember.address1}" readonly> <input
 								type="text" id="address2" name="address2" class="form-control input-md"
-								placeholder="나머지 주소를 입력해주세요" id="input">
+								placeholder="나머지 주소를 입력해주세요" id="input" value="${loginMember.address2}">
 						</div>
 					</div>
 
@@ -135,13 +139,13 @@
 						<div class="col-md-4">
 							<button name="submit" class="btn btn-success">정보 수정</button>
 							&nbsp;
-							<button class="btn btn-warning" type="button">취소</button>
+							<a href="/index.jsp"><button class="cencle btn btn-warning" type="button">취소</button></a>
 							&nbsp;
-							<button class="btn btn-info" type="button">회원 탈퇴</button>
+							<a href="${context}/member/unregister.do"><button class="btn btn-info" type="button">회원 탈퇴</button></a>
 						</div>
 					</div>
-				</fieldset>
 			</form>
+				</fieldset>
 		</div>
 	</div>
 	<script>

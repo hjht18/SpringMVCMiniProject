@@ -33,14 +33,14 @@
 	<update id="updateMember">
 		<![CDATA[
 			UPDATE MEMBER
-			SET	MEMBER_PASSWORD = #{password}
-			  , MEMBER_NAME = #{name}
-		      , MEMBER_PHONENUMBER = #{phoneNum}
-			  , MEMBER_ZIPCODE   = #{postNum}
-			  , MEMBER_ADDRESS   = #{address1}
-			  , MEMBER_DETAILADDRESS  = #{address2}
-			  , MEMBER_IMAGE  = #{userImage}
-			WHERE MEMBER_CODE = #{memberCode}
+            SET    MEMBER_PASSWORD = #{password}
+              , MEMBER_NAME = #{name}
+              , MEMBER_PHONENUMBER = #{phoneNum}
+              , MEMBER_ZIPCODE   = #{postNum}
+              , MEMBER_ADDRESS   = #{address1}
+              , MEMBER_DETAILADDRESS  = #{address2}
+              , MEMBER_IMAGE  = #{userImage}
+            WHERE MEMBER_ID = #{memberId}
 		]]>
 	</update>
 	

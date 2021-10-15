@@ -1,6 +1,5 @@
 package com.project.mini.member;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +63,7 @@ public class MemberController {
 			 model.addAttribute("errors", errors);
 			 return "register";
 		}
-		redirectAttributes.addAttribute("regStatus", true);
+		redirectAttributes.addAttribute("regStatus", Boolean.TRUE);
 		// 회원가입 로직 실행 후 가입성공 폼으로 리턴
 		memberService.signUp(vo);
 		return "redirect:/index.jsp";
@@ -77,12 +76,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-	public String modify(HttpSession session) {
-		MemberVO member = (MemberVO)session.getAttribute("loginMember");
-		memberService.updateMember(member);
-		session.setAttribute("loginMember", member);
-		return "redirect:/";
-	}
+    public String modify(MemberVO vo, HttpSession session) throws Exception{
+
+        MemberVO member = (MemberVO)session.getAttribute("loginMember");
+        memberService.updateMember(vo);
+        session.setAttribute("loginMember", member);
+        return "redirect:/";
+    }
 	
 	
 	// 탈퇴 폼
@@ -93,8 +93,24 @@ public class MemberController {
 	
 	// 탈퇴 로직
 	@RequestMapping(value = "/unregister.do", method = RequestMethod.POST)
-	public String unregister(HttpSession session) {
+	public String unregister(MemberVO vo, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+		
+		
+		Map<String, Boolean> errors = new HashMap<>();
+		
 		MemberVO member = (MemberVO)session.getAttribute("loginMember");
+		
+		String sessionPass = member.getPassword();
+		
+		String voPass = vo.getPassword();
+		if(!(sessionPass.equals(voPass))) {
+			errors.put("passwordValid", Boolean.TRUE);
+		}
+		if(!errors.isEmpty()) {
+			model.addAttribute("errors", errors);
+			return "unregister";
+		}
+		redirectAttributes.addAttribute("unRegStatus", Boolean.TRUE);
 		memberService.deleteMember(member);
 		session.invalidate();
 		return "redirect:/";
@@ -102,7 +118,11 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String loginForm() {
+	public String loginForm(HttpSession session) {
+		if(session.getAttribute("loginMember") != null) {
+			return "redirect:/";
+		}
+		
 		return "loginForm";
 	}
 	
