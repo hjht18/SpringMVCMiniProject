@@ -39,5 +39,5 @@ public class MemberDAO{
 		mybatis.delete("MemberDAO.deleteMember", memberId);
 		
 	}
-	//
+	
 }

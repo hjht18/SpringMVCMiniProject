@@ -12,5 +12,10 @@ public interface MemberService {
 
 	//회원 탈퇴(삭제)
 	void deleteMember(String memberId);
+	
+	//정보 부르기
+	MemberVO getMember(MemberVO vo);
+	
+	public int Login(MemberVO vo) throws Exception;
 
 }

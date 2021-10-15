@@ -23,7 +23,7 @@
 					<label>이메일(아이디)</label>
 				</div>
 				<div class="form-group col-md-8">
-					<input type="email" class="form-control" disabled>
+					<input type="email" class="form-control" readonly="readonly" >
 				</div>
 				<div class="col-md-12">
 					<label>새 비밀번호</label>

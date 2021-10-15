@@ -22,7 +22,7 @@
 					<label>이메일(아이디)</label>
 				</div>
 				<div class="form-group col-md-8">
-					<input type="email" class="form-control" placeholder="아이디를 입력해주세요">
+					<input type="email" class="form-control" value="${member.memberId}" >
 				</div>
 
 				<div class="col-md-12">

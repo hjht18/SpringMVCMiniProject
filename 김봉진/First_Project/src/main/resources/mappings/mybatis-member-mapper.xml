@@ -48,11 +48,12 @@
 	<!-- 회원 탈퇴(삭제) -->
 	<delete id="deleteMember">
 		<![CDATA[
-			DELETE FROM MEMBER WHERE MEMBER_ID = #{memberId}
+			DELETE FROM MEMBER WHERE MEMBER_CODE = #{memberCode}
 		]]>
 	</delete>
 	
-	<select id="select" resultType="String">
-		SELECT * FROM MEMBER WHERE MEMBER_ID = (SELECT MAX(MEMBER_ID) FROM MEMBER);
+	<!-- 회원정보 불러오기 -->
+	<select id="getMember" resultType="memberVO">
+		SELECT * FROM BOARD WHERE MEMBER_CODE = #{memberCode}
 	</select>
 </mapper>
