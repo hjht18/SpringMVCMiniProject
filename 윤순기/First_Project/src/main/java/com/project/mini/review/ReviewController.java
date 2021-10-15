@@ -54,14 +54,6 @@ public class ReviewController {
 		
 		if(reviewTotal >= pageLimit) reviewTotal = pageLimit * reviewBoxNum;
 		
-//		System.out.println("###################################################");
-//		System.out.println("reviewBox : "+reviewBox);
-//		System.out.println("reviewBoxNum : "+reviewBoxNum);
-//		System.out.println("###################################################");
-//		
-//		System.out.println("lastReviewBox : " + lastReviewBox);
-//		System.out.println("reviewTotal : " + reviewTotal);
-		
 		if(reviewBox == reviewBoxNum) {
 			int top = lastReviewBox;
 			int bottom = reviewBox*pageLimit-reviewLimit;
@@ -86,13 +78,6 @@ public class ReviewController {
 	public List<ReviewVO> reviewSend(@RequestParam(value="review", defaultValue="1", required=false)int reviewNum,
 			HttpServletRequest request
 			) {
-//		System.out.println("request : "+request.getHeader("referer"));
-//		if(request.getHeader("referer").contains("reviewBox")) {
-//			System.out.println("얘는 새로고침이네");
-//		} else {
-//			System.out.println("얘는 그냥 요청이거나 초기 로딩이네");
-//		}
-		
 		return reviewService.getBoardlist(reviewNum);
 	}
 	
@@ -120,7 +105,6 @@ public class ReviewController {
 //		if(reviewBox <= this.reviewBoxNum+1){
 //			return "addUnable";
 //		}
-		System.out.println("####################### testmethod @ reviewSet : "+reviewSet);
 		return reviewSet;
 	}
 	
