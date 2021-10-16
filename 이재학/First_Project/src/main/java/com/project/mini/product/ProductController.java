@@ -17,11 +17,11 @@ public class ProductController {
 	private ProductService productService;
 	
 	// model에 product 추가
-	@ModelAttribute("product")
-	public ProductVO getProduct() {
-		ProductVO vo = new ProductVO();
-		return productService.selectById(vo);
-	}
+//	@ModelAttribute("product")
+//	public ProductVO getProduct() {
+//		ProductVO vo = new ProductVO();
+//		return productService.selectById(vo);
+//	}
 	
 	// 상품 테스트
 	@RequestMapping("/test.do")
@@ -38,7 +38,7 @@ public class ProductController {
 	
 	@RequestMapping("/detail.do")
 	public String productDetail(ProductVO vo, Model model) {
-//		model.addAttribute("product", productService.selectById(vo));
+		model.addAttribute("product", productService.selectById(vo));
 		return "product/productDetail";
 	}
 	

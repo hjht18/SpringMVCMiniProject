@@ -22,6 +22,8 @@ public class ReviewController {
 	private int reviewBoxNum = 1;
 	private int reviewSet=1;
 	
+	
+	/* Controller 메소드 */
 	@RequestMapping("/insertBoard.do")
 	public void insertBoard(ReviewVO bb) {
 		System.out.println("####[ReviewController.insertBoard]");
@@ -31,9 +33,52 @@ public class ReviewController {
 	@RequestMapping("/getBoardList.do")
 	public String getBoardList(@RequestParam(value="page", defaultValue="1", required=false) int page,
 			HttpServletRequest request, Model model) {
-//		ModelAndView mav = new ModelAndView();
 		System.out.println("####[ReviewController.getBoardList]");
 		
+		model.addAttribute("pageRange", pRange());
+		model.addAttribute("boardList", reviewService.getBoardlist(page));
+		return "/review/getBoardList";
+	}
+	
+	
+	/* AJAX 처리 메소드       */
+	@RequestMapping("/reviewSend.do")
+	@ResponseBody
+	public List<ReviewVO> reviewSend(@RequestParam(value="review", defaultValue="1", required=false)int reviewNum,
+			HttpServletRequest request
+			) {
+		return reviewService.getBoardlist(reviewNum);
+	}
+	
+	@RequestMapping("/reviewPaging.do")
+	@ResponseBody
+	public int reviewPaging(@RequestParam(value="pageNum", defaultValue="0", required=false)int reviewBoxNum) {
+		if(reviewBoxNum < 0 ) {  
+			if(this.reviewBoxNum > 1) {
+				this.reviewBoxNum += reviewBoxNum;
+			}
+		} else if(reviewBox > this.reviewBoxNum){
+			this.reviewBoxNum += reviewBoxNum;
+		}
+		
+		reviewSet = this.reviewBoxNum+((this.reviewBoxNum-1)*9);
+		
+//		if(this.reviewBoxNum == 1 && reviewBox <= this.reviewBoxNum+1) {
+//			return "unable";
+//		}
+//		
+//		if(this.reviewBoxNum == 1){
+//			return "subUnable";
+//		}
+//		
+//		if(reviewBox <= this.reviewBoxNum+1){
+//			return "addUnable";
+//		}
+		return reviewSet;
+	}
+	
+	/* paging 처리 메소드 */
+	public Map<String, Integer> pRange() {
 		int reviewLimit = 10;                               // 하나의 리뷰페이지에 표시할 리뷰 개수
 		int pageLimit = 10;                                 // 리뷰 페이지를 끊는 값 (previous, next를 적용 시킬 페이지 단위) 
 		int top;                                            // JSP로 반환해 리뷰를 보여줄 최대 값
@@ -76,47 +121,8 @@ public class ReviewController {
 			pageRange.put("top", top);
 			pageRange.put("bottom", bottom);
 		}
-//		mav.addObject("pageRange", pageRange);
-//		mav.addObject("boardList", reviewService.getBoardlist(page));
-//		mav.setViewName("/review/getBoardList");
-		model.addAttribute("pageRange", pageRange);
-		model.addAttribute("boardList", reviewService.getBoardlist(page));
-		return "/review/getBoardList";
-	}
-	 
-	@RequestMapping("/reviewSend.do")
-	@ResponseBody
-	public List<ReviewVO> reviewSend(@RequestParam(value="review", defaultValue="1", required=false)int reviewNum,
-			HttpServletRequest request
-			) {
-		return reviewService.getBoardlist(reviewNum);
-	}
-	
-	@RequestMapping("/test.do")
-	@ResponseBody
-	public int testmethod(@RequestParam(value="pageNum", defaultValue="0", required=false)int reviewBoxNum) {
-		if(reviewBoxNum < 0 ) {  
-			if(this.reviewBoxNum > 1) {
-				this.reviewBoxNum += reviewBoxNum;
-			}
-		} else if(reviewBox > this.reviewBoxNum){
-			this.reviewBoxNum += reviewBoxNum;
-		}
 		
-		reviewSet = this.reviewBoxNum+((this.reviewBoxNum-1)*9);
-		
-//		if(this.reviewBoxNum == 1 && reviewBox <= this.reviewBoxNum+1) {
-//			return "unable";
-//		}
-//		
-//		if(this.reviewBoxNum == 1){
-//			return "subUnable";
-//		}
-//		
-//		if(reviewBox <= this.reviewBoxNum+1){
-//			return "addUnable";
-//		}
-		return reviewSet;
+		return pageRange;
 	}
 	
 }

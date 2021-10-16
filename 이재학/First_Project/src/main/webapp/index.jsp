@@ -13,7 +13,7 @@
 </head>
 <body>
 	<h3>메인 페이지</h3>
-<c:if test="${param.regStatus}">
+<!-- <c:if test="${param.regStatus}">
 <script>
 	alert('회원가입을 축하드립니다!');
 </script>
@@ -22,7 +22,7 @@
 <script>
 	alert('탈퇴 처리가 완료되었습니다');
 </script>
-</c:if>
+</c:if> -->
 	<br><br>
 	<a href="${context}/review/getBoardList.do">리뷰 목록 테스트</a><br>	
 	<a href="${context}/review/indexTest.do">리뷰 인덱스 테스트</a><br>

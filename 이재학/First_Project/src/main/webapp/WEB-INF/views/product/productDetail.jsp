@@ -50,7 +50,7 @@
                             <p style="font-size: 15px; color: #252525;">"[아]보카도 • [쉬]림프 • [파]인애플"</p>
                             <p style="font-size: 14px">무엇하나 뺄 수 없는, 최고의 조합을 샐러드로!?<br>중독적인 단짠단짠의 조화와 아삭 탱글 식감까지.<br>좋아할 수 밖에 없는 프리미엄 샐러드 :)</p>
                         </div>
-                        <div class="product__details__price"><strong>8,900원</strong></div><hr>
+                        <div class="product__details__price"><strong>${product.formattedPrice}</strong></div><hr>
                         <p style="font-size: 14px">상품설명<br>
                             [재료 및 드레싱]<br>
                             아보카도·갈릭쉬림프·파인애플·적양파·스위트콘·할라피뇨<br>

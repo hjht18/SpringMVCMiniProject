@@ -25,12 +25,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@ModelAttribute("memberList")
-	public List<MemberVO> memberList() {
-		MemberVO vo = new MemberVO();
-		return memberService.memberList(vo);
-	}
-	
 	// 회원가입 폼
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public String registerForm(MemberVO vo) {
@@ -66,20 +60,38 @@ public class MemberController {
 		redirectAttributes.addAttribute("regStatus", Boolean.TRUE);
 		// 회원가입 로직 실행 후 가입성공 폼으로 리턴
 		memberService.signUp(vo);
-		return "redirect:/index.jsp";
+		return "registerSuccess";
 	}
 	
 	// 회원 수정 폼
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
-	public String modifyForm(MemberVO vo) {
+	public String modifyForm() {
 		return "modify";
 	}
 	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-    public String modify(MemberVO vo, HttpSession session) throws Exception{
+    public String modify(MemberVO vo, HttpServletRequest request, HttpSession session, Model model, RedirectAttributes rttr) throws Exception{
 
+		Map<String, Boolean> errors = new HashMap<>();
+		
         MemberVO member = (MemberVO)session.getAttribute("loginMember");
+//        session.setAttribute("loginMember", member);
+        
+        if(!StringUtils.hasText(vo.getPassword())) {
+			errors.put("password", Boolean.TRUE);
+		}
+		if(!request.getParameter("password").equals(request.getParameter("repassword"))) {
+			errors.put("passwordValid", Boolean.TRUE);
+		}
+		// 에러가 발생하면 attribute 등록
+		if (!errors.isEmpty()) {
+			 model.addAttribute("errors", errors);
+			 return "modify";
+		}
+        
         memberService.updateMember(vo);
+//        session.invalidate();
+        session.removeAttribute("loginMember");
         session.setAttribute("loginMember", member);
         return "redirect:/";
     }
@@ -93,7 +105,7 @@ public class MemberController {
 	
 	// 탈퇴 로직
 	@RequestMapping(value = "/unregister.do", method = RequestMethod.POST)
-	public String unregister(MemberVO vo, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+	public String unregister(MemberVO vo, HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		
 		
 		Map<String, Boolean> errors = new HashMap<>();
@@ -113,7 +125,7 @@ public class MemberController {
 		redirectAttributes.addAttribute("unRegStatus", Boolean.TRUE);
 		memberService.deleteMember(member);
 		session.invalidate();
-		return "redirect:/";
+		return "unregisterSuccess";
 	}
 	
 
@@ -131,7 +143,6 @@ public class MemberController {
 		return "addressAPIPopup";
 	}
 	
-	// =================================== // 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public String login(@RequestParam("memberId") String memberId
                        , @RequestParam("password") String password, HttpServletRequest request) throws Exception {

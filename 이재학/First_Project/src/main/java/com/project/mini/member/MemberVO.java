@@ -2,7 +2,6 @@ package com.project.mini.member;
 
 public class MemberVO {
 
-	private int memberCode; // 유저코드
 	private String memberId; // 아이디(이메일)
 	private String password; // 패스워드
 	private String name; // 유저이름
@@ -15,10 +14,8 @@ public class MemberVO {
 	public MemberVO() {
 	}
 
-	public MemberVO(int memberCode, String memberId, String password, String name, String phoneNum, String postNum,
-			String address1, String address2, String userImage) {
-		super();
-		this.memberCode = memberCode;
+	public MemberVO(String memberId, String password, String name, String phoneNum, String postNum, String address1,
+			String address2, String userImage) {
 		this.memberId = memberId;
 		this.password = password;
 		this.name = name;
@@ -27,86 +24,73 @@ public class MemberVO {
 		this.address1 = address1;
 		this.address2 = address2;
 		this.userImage = userImage;
-	}
-
-	public int getMemberCode() {
-		return memberCode;
-	}
-
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
 	}
 
 	public String getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-
 	public String getPassword() {
 		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getPhoneNum() {
 		return phoneNum;
-	}
-
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
 	}
 
 	public String getPostNum() {
 		return postNum;
 	}
 
-	public void setPostNum(String postNum) {
-		this.postNum = postNum;
-	}
-
 	public String getAddress1() {
 		return address1;
-	}
-
-	public void setAddress1(String address1) {
-		this.address1 = address1;
 	}
 
 	public String getAddress2() {
 		return address2;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-
 	public String getUserImage() {
 		return userImage;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
 	public void setUserImage(String userImage) {
 		this.userImage = userImage;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVO [memberCode=" + memberCode + ", memberId=" + memberId + ", password=" + password + ", name="
-				+ name + ", phoneNum=" + phoneNum + ", postNum=" + postNum + ", address1=" + address1 + ", address2="
-				+ address2 + ", userImage=" + userImage + "]";
-	}
+	
 
 	
 }

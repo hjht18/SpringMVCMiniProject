@@ -19,7 +19,7 @@ pageContext.setAttribute("newLineChar", "\n");
 <body>
 	<h3>상품 테스트 페이지</h3>
 	<a href="${context}/product/info">상품 상세 페이지</a>
-	<h3>코드 : ${product.code}</h3>
+	<h3>코드 : ${product.id}</h3>
 	<h3>제목 : ${product.name}</h3>
 	<h3>내용 : ${fn:replace(data, newLineChar, "<br> ")}</h3>
 	<h3>가격 : ${product.price}</h3>

@@ -1,6 +1,5 @@
 package com.project.mini.member;
 
-import java.util.List;
 
 public interface MemberService {
 	
@@ -19,8 +18,8 @@ public interface MemberService {
 	// 로그인
 	MemberVO login(MemberVO vo) throws Exception;
 	
-	// 회원 목록
-	List<MemberVO> memberList(MemberVO vo);
+	// 회원
+	MemberVO selectById(MemberVO vo);
 	
 
 }

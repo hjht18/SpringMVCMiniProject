@@ -2,11 +2,15 @@ package com.project.mini.review;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ReviewVO {
 	private int review_id;
 	private int review_score;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
 	private Date review_regdate;
 	private String review_content;
+	private int select_review;
 
 	public int getReview_id() {
 		return review_id;
@@ -32,6 +36,13 @@ public class ReviewVO {
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
 	}
+	public int getSelect_review() {
+		return select_review;
+	}
+	public void setSelect_review(int select_review) {
+		this.select_review = select_review;
+	}
+	
 }
 
 

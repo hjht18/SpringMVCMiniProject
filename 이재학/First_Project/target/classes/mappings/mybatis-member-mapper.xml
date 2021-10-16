@@ -5,7 +5,6 @@
 <mapper namespace="MemberDAO">
 
 	<resultMap id="memberResult" type="memberVO">
-		<result property="memberCode" column="MEMBER_CODE" />
 	    <result property="memberId" column="MEMBER_ID"/>
 	    <result property="password" column="MEMBER_PASSWORD"/>
 	    <result property="name" column="MEMBER_NAME"/>
@@ -19,7 +18,7 @@
 	<!-- 회원가입 정보 입력-->
 	<insert id="signUp">
 		<![CDATA[
-		INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL, #{memberId}, #{password}, #{name}, #{phoneNum}, #{postNum}, #{address1}, #{address2}, #{userImage})
+		INSERT INTO MEMBER VALUES(#{memberId}, #{password}, #{name}, #{phoneNum}, #{postNum}, #{address1}, #{address2}, #{userImage})
 		]]>
 	</insert>
 	
@@ -55,11 +54,11 @@
 	<!-- 회원 탈퇴(삭제) -->
 	<delete id="deleteMember">
 		<![CDATA[
-			DELETE FROM MEMBER WHERE MEMBER_CODE = #{memberCode}
+			DELETE FROM MEMBER WHERE MEMBER_ID = #{memberId}
 		]]>
 	</delete>
 	
-	<select id="memberList" resultMap="memberResult">
-		SELECT * FROM MEMBER
+	<select id="selectById" resultMap="memberResult">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
 	</select>
 </mapper>

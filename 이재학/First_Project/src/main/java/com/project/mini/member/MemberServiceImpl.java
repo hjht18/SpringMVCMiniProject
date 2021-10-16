@@ -1,6 +1,5 @@
 package com.project.mini.member;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +41,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> memberList(MemberVO vo) {
-		return memberDAO.memberList(vo);
+	public MemberVO selectById(MemberVO vo) {
+		return memberDAO.selectById(vo);
 	}
 	
 	

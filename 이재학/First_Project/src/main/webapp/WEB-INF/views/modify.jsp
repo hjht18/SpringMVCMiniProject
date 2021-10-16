@@ -71,6 +71,7 @@
 							<input type="password" name="password"
 								placeholder="새로운 비밀번호를 입력해주세요" class="form-control input-md"
 								id="input">
+								<c:if test="${errors.password}"><p class="field-error">비밀번호를 입력해주세요!</p></c:if>
 						</div>
 					</div>
 
@@ -81,6 +82,7 @@
 							<input name="repassword" type="password"
 								placeholder="비밀번호를 다시 한 번 입력해주세요" class="form-control input-md"
 								id="input">
+								<c:if test="${errors.passwordValid}"><p class="field-error">비밀번호와 일치하지 않습니다!</p></c:if>
 						</div>
 					</div>
 

@@ -109,8 +109,9 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">${productList[0].name}</a></h6>
+                                    <h6><a href="detail.do">${productList[0].name}</a></h6>
                                     <h5>${productList[0].formattedPrice}원</h5>
+                                    <h5>${productList[0].content}</h5>
                                 </div>
                             </div>
                         </div>
