@@ -10,12 +10,13 @@ public class MemberVO {
 	private String address1; // 기본주소
 	private String address2; // 상세주소
 	private String userImage; // 유저이미지
+	private int role; 		// 역할
 	
 	public MemberVO() {
 	}
 
 	public MemberVO(String memberId, String password, String name, String phoneNum, String postNum, String address1,
-			String address2, String userImage) {
+			String address2, String userImage, int role) {
 		this.memberId = memberId;
 		this.password = password;
 		this.name = name;
@@ -24,6 +25,7 @@ public class MemberVO {
 		this.address1 = address1;
 		this.address2 = address2;
 		this.userImage = userImage;
+		this.role = role;
 	}
 
 	public String getMemberId() {
@@ -58,6 +60,10 @@ public class MemberVO {
 		return userImage;
 	}
 
+	public int getRole() {
+		return role;
+	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
@@ -90,7 +96,8 @@ public class MemberVO {
 		this.userImage = userImage;
 	}
 
-	
-
+	public void setRole(int role) {
+		this.role = role;
+	}
 	
 }

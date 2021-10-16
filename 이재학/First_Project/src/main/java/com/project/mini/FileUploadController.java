@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,13 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Servlet implementation class FileUploadServlet
  */
-@WebServlet("/uploadFile.do")
-public class FileUploadController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@Controller
+public class FileUploadController {
     
 	private boolean bDebug = true ; // 디버그일때 print
 	// 기본 업로드 폴더
@@ -41,6 +41,10 @@ public class FileUploadController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+	
+	@RequestMapping("/uploadFile.do")
+	public String doUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("status","error");
 		if( bDebug ) { System.out.println("Start : FileUploadServlet"); }
@@ -55,7 +59,7 @@ public class FileUploadController extends HttpServlet {
             
             writer.println("Error: multipart/form-data 로 전송해야 합니다.");
             writer.flush();
-            return;
+            return null;
         }
         
         // =======================================
@@ -72,7 +76,7 @@ public class FileUploadController extends HttpServlet {
         
         // =======================================
         // 업로드 자료를 보관할 폴더명 설정 ServletContext 이므로 현재 테스트 되는 임시 웹 폴더에 업로드된다 .. 
-        String sUploadDirectory = getServletContext().getRealPath("")+ UPLOAD_DIRECTORY  ;
+        String sUploadDirectory = request.getSession().getServletContext().getRealPath("")+ UPLOAD_DIRECTORY  ;
         if( bDebug ) { System.out.println("uploadPath:" + sUploadDirectory);}
         
         // 업로도드 폴더가 없는 경우 생성
@@ -170,8 +174,8 @@ public class FileUploadController extends HttpServlet {
         
         // =======================================
         // 화면에 보일 페이지 이동
-        getServletContext().getRequestDispatcher("/uploadEnd.jsp").forward(request, response);
-        
+        return "redirect:/register.do";
+        		
 	} // end method
 
 } // end class

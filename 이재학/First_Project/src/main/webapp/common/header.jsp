@@ -3,52 +3,85 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var ="context"><%=request.getContextPath()%></c:set>
  <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>메인 페이지</title>
-        <link href="${context}//css/style.css" type="text/css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
-        <script src="${context}/javascript/jquery-1.12.3.js"></script>
-        <script src="${context}/javascript/script.js" defer type="text/javascript"></script>
-        <script src="https://kit.fontawesome.com/e5732aa35f.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <header>
-            <nav class="top" id="menuwrap">
-              <div class="logo">
-                <i class="fas fa-leaf"></i>
-                <a href="#">Fresh Salad</a>
-              </div>
-                  <ul class="navi">
-                    <li><a href="#">퓨어주스</a>
-                    </li>
-                    <li><a href="#">주문</a>
-                    </li>
-                    <li><a href="#">소개</a>
-                    </li>
-                    <li><a href="#">FQA</a>
-                    </li>
-                    <li><a onclick="javascript:fn_isLogin('${sessionScope.userCode}','${loginUrl}','${context}/work/board/retrieveBoardList.do')">문의</a>
-                    </li>   
-                  </ul>
-                  <ul class="cartlogo">
-                    <c:if test="${sessionScope.userid == null}">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogin();">로그인</button>
-                        </c:if>
-                        <c:if test="${sessionScope.userid != null}">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onclick="javascript:fnlogout();">로그아웃</button>
-                    </c:if>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </ul>
-              <a href="#" class="toggleBtn">
-                <i class="fas fa-bars"></i>
-            </a>
+<html>
 
-            
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Tropiko</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <!-- <link href="/css/style.css" rel="stylesheet" />  -->
+  <!-- responsive style -->
+  <link href="/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="/img/main_images/logo.png" alt="" /><span>
+              Tropiko
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="service.html"> Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="fruit.html"> Notice </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html"> FAQ</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+            <div class="quote_btn-container ml-0 ml-lg-4 d-flex justify-content-center">
+              <a href="">
+                로그인
+              </a>
+            </div>
+          </div>
         </nav>
-        </header>
-        </body>
+      </div>
+    </header>
+    <!-- end header section -->
+
+  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+</body>
+
 </html>

@@ -4,29 +4,49 @@
 <c:set var ="context"><%=request.getContextPath()%></c:set>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset='utf-8'>
-        <title>메인 페이지</title>
-        <link href="/css/style.css" type="text/css" rel="stylesheet">
-        <script src="/js/jquery-1.12.3.js"></script>
-        <script src="/js/script.js" defer type="text/javascript"></script>
-        <script src="https://kit.fontawesome.com/e5732aa35f.js" crossorigin="anonymous"></script>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Fresh Salad</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <!-- <link href="css/style.css" rel="stylesheet" />  -->
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
 </head>
+
 <body>
-<footer>
-            <div class="copy">
-              COPYRIGHT ©️ by WEBDESIGN. ALL RIGHTS RESERVED
-            </div>
-            <div class="site">
-              <div class="btmenu">
-                <ul>
-                  <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                  <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
-                </ul>
-              </div>
-              </div>
-            </footer>
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      Copyright &copy; 2019 All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
 
 </body>
+
 </html>

@@ -7,6 +7,7 @@
 		<result property="id" column="product_id"/>
 		<result property="name" column="product_name"/>
 		<result property="content" column="product_content"/>
+		<result property="content2" column="product_content2"/>
 		<result property="price" column="product_price"/>
 		<result property="image" column="product_image"/>
 	</resultMap>
@@ -24,6 +25,6 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, #{name}, #{content}, #{price}, #{image})
+		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, #{name}, #{content}, #{content2}, #{price}, #{image})
 	</insert>
 </mapper>

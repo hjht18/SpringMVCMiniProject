@@ -36,12 +36,12 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	// 상품 상세 페이지
 	@RequestMapping("/detail.do")
 	public String productDetail(ProductVO vo, Model model) {
 		model.addAttribute("product", productService.selectById(vo));
 		return "product/productDetail";
 	}
-	
 	
 	// 상품 등록용 관리자 페이지
 	@RequestMapping("/admin.do")

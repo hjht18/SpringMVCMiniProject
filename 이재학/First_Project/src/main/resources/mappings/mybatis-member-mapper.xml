@@ -13,12 +13,13 @@
 	    <result property="address1" column="MEMBER_ADDRESS"/>
 	    <result property="address2" column="MEMBER_DETAILADDRESS"/>
 	    <result property="userImage" column="MEMBER_IMAGE"/>
+	    <result property="role" column="MEMBER_ROLE"/>
 	</resultMap>
 
 	<!-- 회원가입 정보 입력-->
 	<insert id="signUp">
 		<![CDATA[
-		INSERT INTO MEMBER VALUES(#{memberId}, #{password}, #{name}, #{phoneNum}, #{postNum}, #{address1}, #{address2}, #{userImage})
+		INSERT INTO MEMBER VALUES(#{memberId}, #{password}, #{name}, #{phoneNum}, #{postNum}, #{address1}, #{address2}, #{userImage}, 0)
 		]]>
 	</insert>
 	
@@ -61,4 +62,8 @@
 	<select id="selectById" resultMap="memberResult">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	<update id="filename">
+		UPDATE MEMBER SET MEMBER_IMAGE = #{userImage} WHERE MEMBER_ID = #{memberId}
+	</update>
 </mapper>

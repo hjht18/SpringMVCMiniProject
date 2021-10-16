@@ -26,8 +26,12 @@
 					상품명 : <br><input id="input_box" type="text" name="name" value="${param.name}">
 				</p>
 				<p>
-					상품 설명 : <br>
+					상품 상단 설명 : <br>
 					<textarea id="textarea_box" name="content" rows="5" cols="30">${param.content}</textarea>
+				</p>
+				<p>
+					상품 하단 설명 : <br>
+					<textarea id="textarea_box" name="content2" rows="5" cols="30">${param.content2}</textarea>
 				</p>
 				<p>
 					상품가격 : <br><input id="input_box" type="number" name="price" value="${param.price}">

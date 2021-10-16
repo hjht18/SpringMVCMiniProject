@@ -57,6 +57,7 @@ public class MemberController {
 			 model.addAttribute("errors", errors);
 			 return "register";
 		}
+		
 		redirectAttributes.addAttribute("regStatus", Boolean.TRUE);
 		// 회원가입 로직 실행 후 가입성공 폼으로 리턴
 		memberService.signUp(vo);
@@ -90,7 +91,6 @@ public class MemberController {
 		}
         
         memberService.updateMember(vo);
-//        session.invalidate();
         session.removeAttribute("loginMember");
         session.setAttribute("loginMember", member);
         return "redirect:/";
@@ -147,7 +147,6 @@ public class MemberController {
     public String login(@RequestParam("memberId") String memberId
                        , @RequestParam("password") String password, HttpServletRequest request) throws Exception {
 
-        String path = "";
 
         MemberVO vo = new MemberVO();
 
@@ -155,15 +154,10 @@ public class MemberController {
         vo.setPassword(password);
 
         MemberVO loginMember = memberService.login(vo);
-
-        if(loginMember != null) {
-            path = "redirect:/index.jsp";
-        } else {
-            path = "loginForm";
-        }
         HttpSession session = request.getSession();
         session.setAttribute("loginMember", loginMember);
-        return path;
+        
+        return "login";
 
     }
 }

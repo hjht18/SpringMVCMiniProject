@@ -26,11 +26,9 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+        <div id="preloder">
         <div class="loader"></div>
     </div>
-
- 
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
@@ -45,13 +43,12 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>아쉬파 샐러드</h3>
-                        <p style="font-size: 12px">부드러운 생아보카도와 탱글한 갈릭쉬림프 그리고 달콤상큼한 파인애플의 깔끔한 피니시</p>
-                            <p style="font-size: 15px; color: #252525;">"[아]보카도 • [쉬]림프 • [파]인애플"</p>
-                            <p style="font-size: 14px">무엇하나 뺄 수 없는, 최고의 조합을 샐러드로!?<br>중독적인 단짠단짠의 조화와 아삭 탱글 식감까지.<br>좋아할 수 밖에 없는 프리미엄 샐러드 :)</p>
+                        <h3>${product.name}</h3>
+                        ${product.content}
                         </div>
-                        <div class="product__details__price"><strong>${product.formattedPrice}</strong></div><hr>
-                        <p style="font-size: 14px">상품설명<br>
+                        <div class="product__details__price"><strong>${product.formattedPrice}원</strong></div><hr>
+                        ${product.content2}
+                        <!-- <p style="font-size: 14px">상품설명<br>
                             [재료 및 드레싱]<br>
                             아보카도·갈릭쉬림프·파인애플·적양파·스위트콘·할라피뇨<br>
 블랙올리브·파프리카·방울토마토·샐러드믹스 + 유자드레싱
@@ -59,7 +56,7 @@
                             * 아보카도 후숙으로 인해 거뭇거뭇하게 변할 수 있으나,
 품질에는 이상이 없으니 안심하고 드셔도 됩니다.
 제품 선선도를 위해 당일 섭취를 강력 권장합니다!<br>
-                            *파우치 드레싱은 샐러드 용기 위에 스티커 부착 되어 제공 됩니다.</p>
+                            *파우치 드레싱은 샐러드 용기 위에 스티커 부착 되어 제공 됩니다.</p> -->
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">

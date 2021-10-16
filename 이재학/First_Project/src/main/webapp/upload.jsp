@@ -7,8 +7,6 @@
 <title>Upload Form</title>
 </head>
 <body>
-	
-	
 	<form method="post" action="uploadFile.do" enctype="multipart/form-data">
            
            <input type="text" name="field_name" value="값"/><br/>

@@ -117,9 +117,7 @@
 	</form>
 		</div>
 	</div>
-		
-	<script>
-
+	<script> 
 		<%-- 주소검색 팝업 호출 --%>
 				function fn_openAddressPopup() {
 					var url = "addressAPI.do";
