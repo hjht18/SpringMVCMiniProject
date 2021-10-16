@@ -137,7 +137,7 @@
 								        </div>
 								    </div>
 								    
-                                	<!-- The Modal(updateReview) -->
+								    <!-- The Modal(updateReview) -->
 								    <div class="modal fade" id="updateReview">
 								       <div class="modal-dialog">
 								         <div class="modal-content">
@@ -145,17 +145,22 @@
 								           <!-- Modal Header -->
 								           <div class="modal-header">
 								               <ul>
-								                   <li>
-									                   <h2 id="update">
-                                                        	&emsp;게시글 수정
-                                                   		</h2>
-
-                                                   </li>
-								                   <li>
+                                                   <li> 
+                                                        <div class="reviewHeade update"> 
+                                                            &emsp;게시글 수정
+                                                        </div>
+                                                        <div class="reviewHeade insert">
+                                                            &emsp;게시글 생성
+                                                        </div>
+                                                        <div class="reviewHeade select">
+                                                            &emsp;게시글
+                                                        </div>
+                                                    </li>
+								                    <li>
                                                         &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
 								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
 								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
-								                   </li> 
+								                    </li> 
 								               </ul>
 								           </div>
 								     
@@ -167,11 +172,20 @@
 								                   upload..
 								               </div>
 								           </div>
-								     
+                                           <br>
 								           <!-- Modal footer -->
 								           <div class="modal-footer">
-								               <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-								               <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                                             <div class="update">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                                             </div>
+                                             <div class="insert">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">생성하기</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                                             </div>
+                                             <div class="select">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                                             </div>
 								           </div>
 								         </div>
 								       </div>
