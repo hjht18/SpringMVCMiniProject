@@ -89,7 +89,7 @@ h6 {
 }
 
 .table > tbody > tr > td:nth-child(3) {
-	width : 70px;
+	width : 100px;
 	background-color:#ff80c0;
 }
 

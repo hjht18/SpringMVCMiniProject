@@ -15,13 +15,13 @@ $(function() {
 				if(data.length > 0) {
 					var tb = $("<tbody>");
 					for(var i=0; i<data.length; i++) {
-						var $id = data[i].review_id;
+						var $id = data[i].member_id;
 						var $score = data[i].review_score;
 						var $content = data[i].review_content;
 						var $regdate = data[i].review_regdate;
 						var row = $("<tr>").append(
 							$("<td>").text($score),
-							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#myModal' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
+							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
 //							$('<input type="button" data-bs-toggle="modal" class="t_btn" value="'+$content+'">'),
 //							$('<button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="t_btn">').text($content),
 							$("<td>").text($id),
@@ -70,7 +70,7 @@ $(function() {
 		$(this).addClass("active");
 	});
 	
-	$("#myModal").on("show.bs.modal", function(e) {
+	$("#updateReview").on("show.bs.modal", function(e) {
 //		$(".title").attr("value",$(e.relatedTarget).data("title"));
 		$(".id").text($(e.relatedTarget).data("id"));
 		$(".score").attr("value",$(e.relatedTarget).data("score"));
@@ -84,6 +84,8 @@ $(function() {
 //		var content = $(e.relatedTarget).data("content");
 //		var regdate = $(e.relatedTarget).data("regdate");
 	})
+	
+	
 	
 	
 });

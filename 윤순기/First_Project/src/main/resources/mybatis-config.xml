@@ -3,11 +3,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.project.mini.review.ReviewVO" alias="reviewVO"/>
-		<typeAlias type="com.project.mini.product.ProductVO" alias="product"/>
+		<typeAlias type="com.project.mini.review.login.MemberVO" alias="memberVO"/>
+		<typeAlias type="com.project.mini.review.product.ProductVO" alias="productVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappings/mybatis-review-mapper.xml"/>
-		<mapper resource="mappings/mybatis-product-mapper.xml"/>
 	</mappers>
 </configuration>

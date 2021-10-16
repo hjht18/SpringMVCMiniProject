@@ -1,10 +1,12 @@
 package com.project.mini.review;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,15 +14,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.project.mini.review.login.MemberVO;
+import com.project.mini.review.product.ProductVO;
 
 @Controller
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	private HttpSession session;
 	private int reviewBox;
 	private int reviewTotal;
 	private int reviewBoxNum = 1;
 	private int reviewSet=1;
+	private int product_id;
+	Map<String, Integer> pageMap = new HashMap<String, Integer>();
 	
 	
 	/* Controller 메소드 */
@@ -35,10 +44,22 @@ public class ReviewController {
 			HttpServletRequest request, Model model) {
 		System.out.println("####[ReviewController.getBoardList]");
 		
-		model.addAttribute("pageRange", pRange());
-		model.addAttribute("boardList", reviewService.getBoardlist(page));
+		/* 상품 번호 */
+		System.out.println("################");
+		session = request.getSession();
+		System.out.println("################");
+		System.out.println("product_id1 : "+session.getAttribute("product_id"));
+		product_id = (int) session.getAttribute("product_id");
+		System.out.println("product_id2 : "+product_id);
+		
+		pageMap.put("page", page);
+		pageMap.put("product_id", product_id);
+		
+		model.addAttribute("pageRange", pRange(product_id));
+		model.addAttribute("boardList", reviewService.getBoardlist(pageMap));
 		return "/review/getBoardList";
 	}
+	
 	
 	
 	/* AJAX 처리 메소드       */
@@ -47,7 +68,21 @@ public class ReviewController {
 	public List<ReviewVO> reviewSend(@RequestParam(value="review", defaultValue="1", required=false)int reviewNum,
 			HttpServletRequest request
 			) {
-		return reviewService.getBoardlist(reviewNum);
+		System.out.println("###[ReviewController.reviewSend]");
+		pageMap.put("page", reviewNum);
+		
+		List<ReviewVO> reviewList = reviewService.getBoardlist(pageMap);
+		
+		Iterator<ReviewVO> it = reviewList.iterator();
+		
+		while(it.hasNext()) {
+			ReviewVO reviewVO = it.next();
+			System.out.println("reviewVO id : "+reviewVO.getReview_id());
+			System.out.println("reviewVO content : "+reviewVO.getReview_content());
+			System.out.println("reviewVO score : "+reviewVO.getReview_score());
+		}
+		
+		return reviewService.getBoardlist(pageMap);
 	}
 	
 	@RequestMapping("/reviewPaging.do")
@@ -78,12 +113,13 @@ public class ReviewController {
 	}
 	
 	/* paging 처리 메소드 */
-	public Map<String, Integer> pRange() {
+	public Map<String, Integer> pRange(int product_id) {
 		int reviewLimit = 10;                               // 하나의 리뷰페이지에 표시할 리뷰 개수
 		int pageLimit = 10;                                 // 리뷰 페이지를 끊는 값 (previous, next를 적용 시킬 페이지 단위) 
 		int top;                                            // JSP로 반환해 리뷰를 보여줄 최대 값
 		int bottom;                                         // JSP로 반환해 리뷰를 보여줄 최소 값
-		int reviewCount = reviewService.boardCount();       // 레코드의 총 개수
+		int reviewCount = reviewService.boardCount(product_id);       // 레코드의 총 개수
+		System.out.println("reviewCount : "+reviewCount);
 		Map<String, Integer> pageRange = new HashMap<String, Integer>();
 		
 		reviewTotal = reviewCount / reviewLimit;             // reviewTotal : 레코드 개수를 pageLimit으로 나눈 값
@@ -124,5 +160,44 @@ public class ReviewController {
 		
 		return pageRange;
 	}
+	
+	
+	
+	
+	/*=============================================*/
+	/* Login Test Controller */
+	@RequestMapping("/login.do")
+	public String login(MemberVO memberVO, HttpServletRequest request) {
+		System.out.println("####[ReviewController.login]");
+		System.out.println("memberVO ID : "+memberVO.getMember_id());
+		System.out.println("memberVO PASSWORD : "+memberVO.getPassword());
+		
+		MemberVO mVO = reviewService.getMember(memberVO);
+		System.out.println("mVO ID : "+memberVO.getMember_id());
+		System.out.println("mVO PASSWORD : "+memberVO.getPassword());
+		
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("member_id", mVO.getMember_id());
+		return "/review/ProductTest";
+	}
+	
+	
+	/* product Select Test */
+	@RequestMapping("/selectProduct.do")
+	public ModelAndView getProduct(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("####[ReviewController.selectProduct]");
+		HttpSession session = request.getSession();
+		System.out.println("product ID : "+request.getParameter("product_id"));
+		
+		ProductVO pVO = reviewService.getProduct(Integer.parseInt(request.getParameter("product_id")));
+		session.setAttribute("product_id", pVO.getProduct_id());
+		
+		mav.setViewName("redirect:/getBoardList.do");
+		return mav;
+	}
+	/*=============================================*/
 	
 }

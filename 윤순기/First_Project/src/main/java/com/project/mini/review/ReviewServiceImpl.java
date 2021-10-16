@@ -1,9 +1,14 @@
 package com.project.mini.review;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.project.mini.review.login.MemberVO;
+import com.project.mini.review.product.ProductVO;
+
 
 @Service("ReviewService")
 public class ReviewServiceImpl implements ReviewService{
@@ -17,14 +22,30 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewVO> getBoardlist(int pageNum) {
+	public List<ReviewVO> getBoardlist(Map<String, Integer> pageMap) {
 		System.out.println("###[BoardServiceImpl.getBoardlist]");
-		return reviewDAO.getBoardList(pageNum);
+		return reviewDAO.getBoardList(pageMap);
 	}
 
 	@Override
-	public int boardCount() {
-		return reviewDAO.boardCount();
+	public int boardCount(int product_id) {
+		return reviewDAO.boardCount(product_id);
 	}
+
+	/*=============================================*/
+	/* 로그인 테스트 */
+	@Override
+	public MemberVO getMember(MemberVO memberVO) {
+		return reviewDAO.getMember(memberVO);
+	}
+
+	
+	/* 상품 선택 테스트 */
+	@Override
+	public ProductVO getProduct(int productVO) {
+		
+		return reviewDAO.getProduct(productVO);
+	}
+	/*=============================================*/
 	
 }
