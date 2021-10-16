@@ -54,7 +54,6 @@ public class ReviewController {
 		
 		model.addAttribute("pageRange", pRange(product_id));
 		model.addAttribute("boardList", reviewService.getBoardlist(pageMap));
-		System.out.println("###################@@@@@@@@@@@@@@@@############");
 		return "/review/getBoardList";
 	}
 	
@@ -66,7 +65,6 @@ public class ReviewController {
 	public List<ReviewVO> reviewSend(@RequestParam(value="review", defaultValue="1", required=false)int reviewNum,
 			HttpServletRequest request
 			) {
-		System.out.println("reviewNum : "+reviewNum);
 		System.out.println("###[ReviewController.reviewSend]");
 		
 		pageMap.put("page", reviewNum);
@@ -134,14 +132,10 @@ public class ReviewController {
 				bottom = reviewBox*pageLimit-reviewLimit;
 			}
 			if(bottom < 1) bottom = 1;
-			System.out.println("top : "+top);
-			System.out.println("bottom : "+bottom);
 			pageRange.put("top", top);
 			pageRange.put("bottom", bottom);
 			
 		} else {
-			System.out.println("reviewTotal : "+reviewTotal);
-			System.out.println("reviewTotal-(pageLimit-1) : "+(reviewTotal-(pageLimit-1)));
 			top = reviewTotal;
 			bottom = reviewTotal-(pageLimit-1);
 			
@@ -163,13 +157,8 @@ public class ReviewController {
 	@RequestMapping("/login.do")
 	public String login(MemberVO memberVO, HttpServletRequest request) {
 		System.out.println("####[ReviewController.login]");
-		System.out.println("memberVO ID : "+memberVO.getMember_id());
-		System.out.println("memberVO PASSWORD : "+memberVO.getPassword());
 		
 		MemberVO mVO = reviewService.getMember(memberVO);
-		System.out.println("mVO ID : "+memberVO.getMember_id());
-		System.out.println("mVO PASSWORD : "+memberVO.getPassword());
-		
 		
 		HttpSession session = request.getSession();
 		
@@ -184,7 +173,6 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("####[ReviewController.selectProduct]");
 		HttpSession session = request.getSession();
-		System.out.println("product ID : "+request.getParameter("product_id"));
 		
 		ProductVO pVO = reviewService.getProduct(Integer.parseInt(request.getParameter("product_id")));
 		session.setAttribute("product_id", pVO.getProduct_id());

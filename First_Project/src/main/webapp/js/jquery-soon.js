@@ -23,7 +23,8 @@ $(function() {
 						var $regdate = data[i].review_regdate;
 						var row = $("<tr>").append(
 							$("<td>").text($score),
-							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
+//							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
+							$("<a href='#' class='aCon' data-toggle='modal' data-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
 //							$('<input type="button" data-bs-toggle="modal" class="t_btn" value="'+$content+'">'),
 //							$('<button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="t_btn">').text($content),
 							$("<td>").text($id),

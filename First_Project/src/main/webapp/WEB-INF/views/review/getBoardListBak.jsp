@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link href="/css/style-soon.css?ver=3" rel="stylesheet">
+    <link href="/css/style-soon.css?ver=2" rel="stylesheet">
 	
 </head>
 
@@ -74,7 +74,7 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="true">상세 설명</a>
                             </li>
                             <li class="nav-item">
@@ -138,44 +138,45 @@
 								    </div>
 								    
                                 	<!-- The Modal(updateReview) -->
-								    <div class="modal fade" id="updateReview">
-								       <div class="modal-dialog">
+								    <div class="modal" id="updateReview">
+								       <div class="modal-dialog modal-lg">
 								         <div class="modal-content">
 								     
 								           <!-- Modal Header -->
 								           <div class="modal-header">
 								               <ul>
 								                   <li>
-									                   <h2 id="update">
-                                                        	&emsp;게시글 수정
-                                                   		</h2>
-
-                                                   </li>
+								                       제목 <input type="text" class="title" name="review_title">
+								                       
+								                   </li>
 								                   <li>
-                                                        &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
-								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
-								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
+								                       평점 <input class="score" type="text" name="review_title">
+								                       &emsp;아이디 <span class="id" name="review_id"></span>
+								                       &emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
 								                   </li> 
 								               </ul>
 								           </div>
 								     
 								           <!-- Modal body -->
 								           <div class="modal-body">
-								               게시글 내용<br>
-								               <textarea class="content" name="review_content"></textarea>
-								               <div class="upload_content">
+								               &emsp;&emsp;게시글 내용<br>
+								               &emsp;&emsp;<textarea class="content" name="review_content"></textarea>
+								               &emsp;&emsp;<div class="upload_content">
 								                   upload..
 								               </div>
 								           </div>
 								     
 								           <!-- Modal footer -->
 								           <div class="modal-footer">
-								               <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-								               <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+								               <button type="button" class="btn btn-info" data-bs-dismiss="modal">업로드</button>
+								               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">수정하기</button>
+								               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
 								           </div>
 								         </div>
 								       </div>
 								     </div> 
+                                
+                                
                                 
 <!-- ############################################ review Board Start ############################################ -->
                                 </div>
@@ -196,7 +197,7 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=3"></script>
+    <script src="/js/jquery-soon.js"></script>
 </body>
 
 </html>
