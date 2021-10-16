@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="sql">
+ 	<insert id="insert">
+ 		INSERT INTO review VALUES((SELECT NVL(MAX(review_id), 0)+1 FROM review), #{review_score}, #{review_content}, #{review_regdate})
+ 	</insert>
+ 	
+ 	<select id="boardCount" resultType="_int">
+ 	<![CDATA[
+ 		SELECT COUNT(*) FROM review WHERE product_id = #{product_id}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="getBoardList" resultType="reviewVO">
+ 	<![CDATA[
+ 		SELECT * FROM review WHERE product_id = ${product_id} AND review_id >= #{bottom} AND review_id <= #{top}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="getMember" resultType="memberVO">
+ 	<![CDATA[
+ 		SELECT * FROM member WHERE member_id = #{member_id} AND password = #{password}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="getProduct" resultType="productVO">
+ 	<![CDATA[
+ 		SELECT * FROM product WHERE product_id = #{product_id}
+ 	]]>
+ 	</select>
+ 	
+ </mapper>
+<!-- 
+
+ 	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="id" />
+        <result property="pwd" column="pwd" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap>
+
+	SELECT * FROM review WHERE product_id = 2 AND review_id >= 1 AND review_id <= 10;
+
+ -->

@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 1350px;
+    height: 50px;
+}
+
+.nav-link {
+    text-decoration : 20px;
+    color: rgb(67, 67, 70);
+}
+
+.nav-item {
+    text-align: center;
+    width : 150px;
+}
+
+.c_image {
+    margin: 0 auto;
+    width: 1300px;
+    height: 350px;
+}
+
+.image {
+	width: 1300px;
+	height: 270px;
+	border: 1px solid brown;
+}
+
+h6 {
+    padding-top: 15px;
+}
+
+.l1 {
+    border: 0.5x solid rgb(124, 121, 121);
+    opacity: 0.2;
+}
+
+.c_review{
+    margin: 0 auto;
+    width : 1300px;
+    height: 750px;
+}
+
+.review_score {
+    margin: 0 auto;
+    width : 400px;
+    height: 180px;
+    border : 1px solid blue;
+}
+
+.pagination {
+    display: block;
+    text-align: center;
+}
+
+.pagination > li{
+    display: inline-block;
+    float: none;
+}
+
+
+
+.table > tbody > tr {
+	text-align: center;
+	text-decoration: none;
+	border-bottom : 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.table > tbody > tr > td:nth-child(1) {
+	width : 70px;
+	background-color:#8080ff;
+}
+
+.aCon {
+	text-align: left;
+	text-decoration: none;
+	display:block;
+	color:black;
+}
+
+.t_btn {
+	display: block;
+	border : 0;
+	outline: 0;
+	width : 70px;
+}
+
+.table > tbody > tr > td:nth-child(3) {
+	width : 70px;
+	background-color:#ff80c0;
+}
+
+.table > tbody > tr > td:last-of-type {
+	background-color:aqua;
+	width:200px;
+	
+}
+
+
+/* Modal */
+.modal-content {
+    height: 700px;
+}
+
+.modal-header > ul {
+    list-style-type: none;
+}
+
+
+.modal-header > ul > li > input, span{
+    margin : 5px;
+    border : 0.5px solid rgba(0, 0, 0, 0.2);
+    background-color: rgb(253, 242, 227);
+}
+
+.modal-header > ul > li:nth-child(1) > input:nth-child(1){
+    width : 92.5%
+}
+
+.modal-header > ul > li:nth-child(2) > span:nth-child(2){
+    border: none;
+    display: inline-block;
+    text-align: center;
+    width : 70px;
+}
+
+.modal-header > ul > li:nth-child(2) > span:nth-child(3){
+    border: none;
+    display: inline-block;
+    text-align: center;
+    width : 150px;
+}
+
+
+.modal-body > textarea {
+    width: 92%;
+    height: 65%;
+    border : 0.5px solid rgba(0, 0, 0, 0.2);
+    background-color: rgb(253, 242, 227);
+}
+
+.upload_content {
+    display: inline-block;
+    width: 92%;
+    height: 30%;
+    border : 0.5px dashed rgba(0, 0, 0, 0.2);
+    /* background-color: rgb(253, 242, 227); */
+}
+
+
