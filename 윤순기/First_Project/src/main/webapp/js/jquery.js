@@ -1,8 +1,4 @@
 $(function() {
-//	window.onload = reviewSend();
-//	document.ready(function() {
-//		reviewSend();
-//	})
 	$(window).ready(function() {
 		reviewPaging(0);
 	})
@@ -10,12 +6,6 @@ $(function() {
 	
 	
 	function reviewSend(reviewNum) {
-//		var reviewNum;
-//		if(reviewParam != null) {
-//			alert("test");
-//			reviewNum = reviewParam;
-//		}
-		
 		$.get(
 			'./reviewSend.do',
 			{
@@ -31,18 +21,18 @@ $(function() {
 						var $regdate = data[i].review_regdate;
 						var row = $("<tr>").append(
 							$("<td>").text($score),
-							$("<a class='ttb1' href='www.naver.com?index="+(i+1)+"'>").text($content),
+							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#myModal' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
+//							$('<input type="button" data-bs-toggle="modal" class="t_btn" value="'+$content+'">'),
+//							$('<button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="t_btn">').text($content),
 							$("<td>").text($id),
 							$("<td>").text($regdate));
 						tb.append(row);
 					}
 				}
 				$(".table").empty().append(tb);
-//				$(".tt1").empty().append(row);
 			}
 		);
 	};
-	
 	
 	function reviewPaging(pageNum) {
 		$.get(
@@ -79,6 +69,21 @@ $(function() {
 		$(".nav-link").removeClass("active");
 		$(this).addClass("active");
 	});
+	
+	$("#myModal").on("show.bs.modal", function(e) {
+//		$(".title").attr("value",$(e.relatedTarget).data("title"));
+		$(".id").text($(e.relatedTarget).data("id"));
+		$(".score").attr("value",$(e.relatedTarget).data("score"));
+		$(".regdate").text($(e.relatedTarget).data("regdate"));
+		$(".content").text($(e.relatedTarget).data("content"));
+		
+		
+		
+//		var id = $(e.relatedTarget).data("id");
+//		var score = $(e.relatedTarget).data("score");
+//		var content = $(e.relatedTarget).data("content");
+//		var regdate = $(e.relatedTarget).data("regdate");
+	})
 	
 	
 });
