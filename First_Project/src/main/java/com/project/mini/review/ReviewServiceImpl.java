@@ -16,9 +16,9 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDAO reviewDAO;
 
 	@Override
-	public void insertBoard(ReviewVO bb) {
+	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("###[BoardServiceImpl.insertBoard]");
-		reviewDAO.insertBoard(bb);
+		reviewDAO.insertReview(reviewVO);
 	}
 
 	@Override
@@ -47,5 +47,15 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDAO.getProduct(productVO);
 	}
 	/*=============================================*/
+
+	@Override
+	public void updateReview(ReviewVO reviewVO) {
+		reviewDAO.updateReview(reviewVO);
+	}
+
+	@Override
+	public void deleteReview(ReviewVO reviewVO) {
+		reviewDAO.deleteReview(reviewVO);
+	}
 	
 }

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link href="/css/style-soon.css?ver=2" rel="stylesheet">
+    <link href="/css/style-soon.css?ver=1" rel="stylesheet">
 	
 	<!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
@@ -33,7 +33,7 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=1"></script>
+    <script src="/js/jquery-soon.js?ver=2"></script>
 	
 </head>
 
@@ -152,7 +152,7 @@
 									<div class="modal fade" id="reviewModal">
 									   <div class="modal-dialog">
 									     <div class="modal-content">
-									         <form action="./test.do" method="get">
+									         <form class="modal-form" method="POST">       <!-- form 여기 @#@#@#@#@#@#@#@ -->
 									       <!-- Modal Header -->
 									           <div class="modal-header">
 									               <ul>
@@ -169,19 +169,21 @@
 									                    </li>
 									                    <li>
 									                        <div class="insert">
-									                                                   아이디 <input class="input" type="text" name="review_id">
-									                             &emsp;&emsp;평점 <input class="score" type="text" name="review_score">
-									                             &emsp;&emsp;수정 날짜 <input class="input" type="text" name="review_regdate">
+									                        	 <input type="hidden" class="product_id" name="r_product_id">
+									                                                   아이디 <input class="member_id" type="text" name="member_id" readOnly>
+									                              &emsp;&emsp;평점 <input class="score" type="number" name="review_score" >
+									                              &emsp;&emsp;수정 날짜 <input class="review_regdate" type="text" name="r_regdate" readOnly>
 									                        </div>
 									                        <div class="update">
-									                                                   아이디<span class="id"></span>
+									                             <input type="hidden" class="review_id" name="review_id">
+									                                                   아이디<span class="member_id"></span>
 									                             &emsp;&emsp;평점 <input class="score" type="text" name="review_score">
-									                             &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
+									                             &emsp;&emsp;수정 날짜 <span class="review_regdate"></span>
 									                        </div>
 									                        <div class="select">
 									                                                   아이디 <span class="id"></span>
 									                             &emsp;&emsp;평점 <span class="score"></span>
-									                             &emsp;&emsp;수정 날짜 <span class="regdate"></span>
+									                             &emsp;&emsp;수정 날짜 <span class="review_regdate"></span>
 									                        </div>
 									                    </li> 
 									               </ul>
@@ -196,23 +198,24 @@
 									               <div class="nonSelectCon">
 									               		<textarea class="reviewContent" name="review_content"></textarea>
 									               </div>
-									               <div class="upload_content">
-									                   upload..
-									               </div>
+												   <div class="upload_content">
+														<input type="file" name="uploadFile" /><br>
+													</div>
 									           </div>
 									           <!-- Modal footer -->
 									           <div class="modal-footer">
 									             <div class="update">
-									                <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									                <input type="submit" class="rus btn btn-primary" value="수정하기">
+									                <input type="submit" class="rds btn btn-info" value="삭제하기">
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 									             </div>
 									             <div class="insert">
 									                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='test.do'">생성하기</button> -->
-									                <input type="submit" class="btn btn-primary" value="생성하기">
-									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									                <input type="submit" class="ris btn btn-primary" value="생성하기">
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 									             </div>
 									             <div class="select">
-									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 									             </div>
 									           </div>
 									        </form>

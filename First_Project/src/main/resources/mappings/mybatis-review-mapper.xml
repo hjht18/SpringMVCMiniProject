@@ -3,7 +3,15 @@
 
  <mapper namespace="sql">
  	<insert id="insert">
- 		INSERT INTO review VALUES((SELECT NVL(MAX(review_id), 0)+1 FROM review), #{review_score}, #{review_content}, #{review_regdate})
+ 		INSERT INTO review VALUES((SELECT NVL(MAX(review_id), 0)+1 FROM review), #{review_score}, #{review_content}, #{review_regdate}, #{member_id}, #{product_id} )
+ 	</insert>
+ 	
+ 	 <insert id="update">
+ 		UPDATE review SET review_score = #{review_score}, review_content=#{review_content} WHERE review_id = #{review_id}
+ 	</insert>
+ 	
+ 	<insert id="delete">
+ 		DELETE review WHERE review_id = #{review_id}
  	</insert>
  	
  	<select id="boardCount" resultType="_int">
