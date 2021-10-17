@@ -6,11 +6,12 @@ import java.util.Map;
 import com.project.mini.review.login.MemberVO;
 import com.project.mini.review.product.ProductVO;
 
-
 public interface ReviewService {
-	public void insertBoard(ReviewVO bb);
+	public void insertReview(ReviewVO reviewVO);
 	public List<ReviewVO> getBoardlist(Map<String, Integer> pageMap);
 	public int boardCount(int product_id);
+	public void updateReview(ReviewVO reviewVO);
+	public void deleteReview(ReviewVO reviewVO);
 	
 	/*=============================================*/
 	/* 로그인 테스트 */

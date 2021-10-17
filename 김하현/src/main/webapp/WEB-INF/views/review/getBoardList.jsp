@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var ="context"><%=request.getContextPath()%></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link href="/css/style-soon.css" rel="stylesheet">
+    <link href="/css/style-soon.css?ver=1" rel="stylesheet">
 	
 	<!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
@@ -33,9 +34,36 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=33"></script>
+    <script src="/js/jquery-soon.js?ver=2"></script>
+    
+    <script src="${context}/js/jquery.form.js"></script>
+    
 	
 </head>
+
+<script>
+
+<!-- Thumbnail Register jQuery문 -->
+
+function fn_upload(){
+	$("#ajaxform").ajaxSubmit({
+        type: "POST",
+        dataType: 'text',
+        url: $("#ajaxform").attr("action"),
+        data: $("#ajaxform").serialize(),
+        success: function (data) {
+        	data2 = data.replace(/"/gi, "");
+        	var imageUrl = "${context}/productImg/" + data2;
+        	$("#pic").attr("src", imageUrl);
+        	$("#userImage").val(data2);
+        },
+        error: function (xhr, status, error) {
+            alert('업로드 실패');
+        }
+    });
+}
+
+</script>
 
 <body>
     <!-- Page Preloder -->
@@ -117,7 +145,24 @@
 								        <h6 class="image-count">고객 후기 사진(7)</h6>
 								        <hr class="l1">
 								        <div class="image">
-								            ...
+								        
+								        <!-- @@@@@@@@@ 대표 이미지 @@@@@@@@@ -->
+   
+       <div class="img01"><img id="pic" style="margin-left:80px; margin-top: 10px; margin-bottom:10px;" height="180px" width="150px" src="${context}/backgroundImage/defaultpic.png"><input type="hidden" id="userImage" name="userImage" required="required" class="form-control" style="width: 100px; position: relative; bottom: 60px; left: 120px"></div>
+       <div class="img02"><input type="hidden" id="userImage" name="userImage" required="required" class="form-control" style="width: 100px; position: relative; bottom: 60px; left: 120px"></div>
+       <div class="img03"><input type="hidden" id="userImage" name="userImage" required="required" class="form-control" style="width: 100px; position: relative; bottom: 60px; left: 120px"></div>
+       
+       	<form id="ajaxform" action="saveFile.do" method="post" enctype="multipart/form-data" role="form">
+		<div class="form-group">
+		<label class="control-label col-md-2"></label>
+			<div class="col-md-6">
+				<input class="form-control" type="file" id="imageFile" name="imageFile" onchange="fn_upload()"/>
+				<input type="hidden" id="imageFolder" name="imageFolder" value="userImg">
+			</div>
+		</div>
+		</form>
+       
+			
 								        </div>
 								    </div>
                                 	<div class="c_review">
@@ -141,69 +186,87 @@
 								  					 </c:forEach>
 								  					 
 								  					<li class="page-item"><a class="page_box_add page-link" href="getBoardList.do?reviewBoxAdd=true">Next</a></li>
-								  					<li class="page-item"><a class="insertReview page_box_add page-link data-bs-toggle='modal' data-bs-target='#insertReview'" href="getBoardList.do">글쓰기</a></li>
+								  					<li class="page-item"><a href="#" class="reviewCreateModal page_box_add page-link" data-toggle="modal" data-target="#reviewModal">글쓰기</a></li>
 								  					 <!-- <li class="page-item"><input class="page_box_add page-link" type="button" value="Next"></li>-->
 										  	   </ul>
 								           </div>
 								        </div>
 								    </div>
 								    
-								    <!-- The Modal(updateReview) -->
-								    <div class="modal fade" id="reviewModal">
-								       <div class="modal-dialog">
-								         <div class="modal-content">
-								     
-								           <!-- Modal Header -->
-								           <div class="modal-header">
-								               <ul>
-                                                   <li> 
-                                                        <div class="reviewHeade update"> 
-                                                            &emsp;게시글 수정
-                                                        </div>
-                                                        <div class="reviewHeade insert">
-                                                            &emsp;게시글 생성
-                                                        </div>
-                                                        <div class="reviewHeade select">
-                                                            &emsp;게시글
-                                                        </div>
-                                                    </li>
-								                    <li>
-                                                        &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
-								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
-								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
-								                    </li> 
-								               </ul>
-								           </div>
-								     
-								           <!-- Modal body -->
-											<form method="post" action="uploadFile.do" enctype="multipart/form-data">
-												<div class="modal-body">
-													게시글 내용<br>
-													<textarea class="content" name="review_content"></textarea>
-													<div class="upload_content">
+									<!-- The Modal(updateReview) -->
+									<div class="modal fade" id="reviewModal">
+									   <div class="modal-dialog">
+									     <div class="modal-content">
+									     	<form method="post" action="uploadFile.do" enctype="multipart/form-data">
+									       <!-- Modal Header -->
+									           <div class="modal-header">
+									               <ul>
+									                   <li> 
+									                        <div class="reviewHeade update"> 
+									                                                게시글 수정
+									                        </div>
+									                        <div class="reviewHeade insert">
+									                                                게시글 생성
+									                        </div>
+									                        <div class="reviewHeade select">
+									                           	게시글
+									                        </div>
+									                    </li>
+									                    <li>
+									                        <div class="insert">
+									                        	 <input type="hidden" class="product_id" name="r_product_id">
+									                                                   아이디 <input class="member_id" type="text" name="member_id" readOnly>
+									                              &emsp;&emsp;평점 <input class="score" type="number" name="review_score" >
+									                              &emsp;&emsp;수정 날짜 <input class="review_regdate" type="text" name="r_regdate" readOnly>
+									                        </div>
+									                        <div class="update">
+									                             <input type="hidden" class="review_id" name="review_id">
+									                                                   아이디<span class="member_id"></span>
+									                             &emsp;&emsp;평점 <input class="score" type="text" name="review_score">
+									                             &emsp;&emsp;수정 날짜 <span class="review_regdate"></span>
+									                        </div>
+									                        <div class="select">
+									                                                   아이디 <span class="id"></span>
+									                             &emsp;&emsp;평점 <span class="score"></span>
+									                             &emsp;&emsp;수정 날짜 <span class="review_regdate"></span>
+									                        </div>
+									                    </li> 
+									               </ul>
+									           </div>
+									     
+									           <!-- Modal body -->
+									           <div class="modal-body">
+									              	 게시글 내용<br>
+									               <div class="selectCon">
+									               		<span class="reviewContent"></span>
+									               </div>
+									               <div class="nonSelectCon">
+									               		<textarea class="reviewContent" name="review_content"></textarea>
+									               </div>
+												   <div class="upload_content">
 														<input type="file" name="uploadFile" /><br>
 													</div>
-												</div>
-											<br>
-								           <!-- Modal footer -->
-								           <div class="modal-footer">
-                                             <div class="update">
-												<input type="submit" class="btn btn-primary" value="수정하기">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="insert">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">생성하기</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="select">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-								           </div>
-											</form>
-								         </div>
-								       </div>
-								     </div> 
-                                
+									           </div>
+									           <!-- Modal footer -->
+									           <div class="modal-footer">
+									             <div class="update">
+									                <input type="submit" class="rus btn btn-primary" value="수정하기">
+									                <input type="submit" class="rds btn btn-info" value="삭제하기">
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									             </div>
+									             <div class="insert">
+									                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='test.do'">생성하기</button> -->
+									                <input type="submit" class="ris btn btn-primary" value="생성하기">
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									             </div>
+									             <div class="select">
+									                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									             </div>
+									           </div>
+									        </form>
+									     </div>
+									   </div>
+									</div> 
 <!-- ############################################ review Board Start ############################################ -->
                                 </div>
                             </div>

@@ -1,6 +1,5 @@
 package com.project.mini.review;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +16,21 @@ public class ReviewDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertBoard(ReviewVO bb) {
+	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("##[ReviewDAO.insertBoard]");
-		bb.setReview_regdate(new Date());
-		mybatis.insert("sql.insert", bb);
-		
+		mybatis.insert("sql.insert", reviewVO);
 	}
+	
+	public void updateReview(ReviewVO reviewVO) {
+		System.out.println("##[ReviewDAO.updateReview]");
+		mybatis.insert("sql.update", reviewVO);
+	}
+	
+	public void deleteReview(ReviewVO reviewVO) {
+		System.out.println("##[ReviewDAO.deleteReview]");
+		mybatis.insert("sql.delete", reviewVO);
+	}
+	
 	
 	public List<ReviewVO> getBoardList(Map<String, Integer> pageMap) {
 		System.out.println("##[ReviewDAO.getBoardList]");
