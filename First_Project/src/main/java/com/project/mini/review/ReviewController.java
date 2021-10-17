@@ -29,6 +29,7 @@ public class ReviewController {
 	private int reviewBoxNum = 1;
 	private int reviewSet=1;
 	private int product_id;
+	private String member_id;
 	Map<String, Integer> pageMap = new HashMap<String, Integer>();
 	
 	
@@ -161,8 +162,8 @@ public class ReviewController {
 		MemberVO mVO = reviewService.getMember(memberVO);
 		
 		HttpSession session = request.getSession();
-		
-		session.setAttribute("member_id", mVO.getMember_id());
+		member_id = mVO.getMember_id();
+		session.setAttribute("member_id", member_id);
 		return "/review/ProductTest";
 	}
 	
@@ -179,5 +180,29 @@ public class ReviewController {
 		
 		mav.setViewName("redirect:/getBoardList.do");
 		return mav;
+	}
+	
+	/* 게시글 식별 정보 */
+	@RequestMapping("/reviewid.do")
+	@ResponseBody
+	public Map<String, Object> review_identification(HttpServletRequest request) {
+		Map<String, Object> review_map = new HashMap<String, Object>();
+		review_map.put("member_id", member_id);
+		review_map.put("product_id", product_id);
+		
+		return review_map;
+	}
+	
+	@RequestMapping("/test.do")
+	public void test(@RequestParam(value="review_id", required=false) String review_id,
+			@RequestParam(value="review_score", required=false) String review_score,
+			@RequestParam(value="review_regdate", required=false) String review_regdate,
+			@RequestParam(value="review_content", required=false) String review_content
+			) {
+		System.out.println("##########{tsetsetsetsetestes}");
+		System.out.println("review_id : "+review_id);
+		System.out.println("review_score : "+review_score);
+		System.out.println("review_regdate : "+review_regdate);
+		System.out.println("review_content : "+review_content);
 	}
 }

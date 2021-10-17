@@ -22,7 +22,18 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link href="/css/style-soon.css?ver=3" rel="stylesheet">
+    <link href="/css/style-soon.css?ver=2" rel="stylesheet">
+	
+	<!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/jquery-soon.js?ver=1"></script>
 	
 </head>
 
@@ -130,67 +141,84 @@
 								  					 </c:forEach>
 								  					 
 								  					<li class="page-item"><a class="page_box_add page-link" href="getBoardList.do?reviewBoxAdd=true">Next</a></li>
-								  					<li class="page-item"><a class="insertReview page_box_add page-link data-bs-toggle='modal' data-bs-target='#insertReview'" href="getBoardList.do">글쓰기</a></li>
+								  					<li class="page-item"><a href="#" class="reviewCreateModal page_box_add page-link" data-toggle="modal" data-target="#reviewModal">글쓰기</a></li>
 								  					 <!-- <li class="page-item"><input class="page_box_add page-link" type="button" value="Next"></li>-->
 										  	   </ul>
 								           </div>
 								        </div>
 								    </div>
 								    
-								    <!-- The Modal(updateReview) -->
-								    <div class="modal fade" id="updateReview">
-								       <div class="modal-dialog">
-								         <div class="modal-content">
-								     
-								           <!-- Modal Header -->
-								           <div class="modal-header">
-								               <ul>
-                                                   <li> 
-                                                        <div class="reviewHeade update"> 
-                                                            &emsp;게시글 수정
-                                                        </div>
-                                                        <div class="reviewHeade insert">
-                                                            &emsp;게시글 생성
-                                                        </div>
-                                                        <div class="reviewHeade select">
-                                                            &emsp;게시글
-                                                        </div>
-                                                    </li>
-								                    <li>
-                                                        &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
-								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
-								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
-								                    </li> 
-								               </ul>
-								           </div>
-								     
-								           <!-- Modal body -->
-								           <div class="modal-body">
-								               게시글 내용<br>
-								               <textarea class="content" name="review_content"></textarea>
-								               <div class="upload_content">
-								                   upload..
-								               </div>
-								           </div>
-                                           <br>
-								           <!-- Modal footer -->
-								           <div class="modal-footer">
-                                             <div class="update">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="insert">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">생성하기</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="select">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-								           </div>
-								         </div>
-								       </div>
-								     </div> 
-                                
+									<!-- The Modal(updateReview) -->
+									<div class="modal fade" id="reviewModal">
+									   <div class="modal-dialog">
+									     <div class="modal-content">
+									         <form action="./test.do" method="get">
+									       <!-- Modal Header -->
+									           <div class="modal-header">
+									               <ul>
+									                   <li> 
+									                        <div class="reviewHeade update"> 
+									                                                게시글 수정
+									                        </div>
+									                        <div class="reviewHeade insert">
+									                                                게시글 생성
+									                        </div>
+									                        <div class="reviewHeade select">
+									                           	게시글
+									                        </div>
+									                    </li>
+									                    <li>
+									                        <div class="insert">
+									                                                   아이디 <input class="input" type="text" name="review_id">
+									                             &emsp;&emsp;평점 <input class="score" type="text" name="review_score">
+									                             &emsp;&emsp;수정 날짜 <input class="input" type="text" name="review_regdate">
+									                        </div>
+									                        <div class="update">
+									                                                   아이디<span class="id"></span>
+									                             &emsp;&emsp;평점 <input class="score" type="text" name="review_score">
+									                             &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
+									                        </div>
+									                        <div class="select">
+									                                                   아이디 <span class="id"></span>
+									                             &emsp;&emsp;평점 <span class="score"></span>
+									                             &emsp;&emsp;수정 날짜 <span class="regdate"></span>
+									                        </div>
+									                    </li> 
+									               </ul>
+									           </div>
+									     
+									           <!-- Modal body -->
+									           <div class="modal-body">
+									              	 게시글 내용<br>
+									               <div class="selectCon">
+									               		<span class="reviewContent"></span>
+									               </div>
+									               <div class="nonSelectCon">
+									               		<textarea class="reviewContent" name="review_content"></textarea>
+									               </div>
+									               <div class="upload_content">
+									                   upload..
+									               </div>
+									           </div>
+									           <!-- Modal footer -->
+									           <div class="modal-footer">
+									             <div class="update">
+									                <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
+									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									             </div>
+									             <div class="insert">
+									                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='test.do'">생성하기</button> -->
+									                <input type="submit" class="btn btn-primary" value="생성하기">
+									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									             </div>
+									             <div class="select">
+									                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+									             </div>
+									           </div>
+									        </form>
+									     </div>
+									   </div>
+									</div> 
 <!-- ############################################ review Board Start ############################################ -->
                                 </div>
                             </div>
@@ -201,16 +229,7 @@
     </section>
     <!-- Product Details Section End -->
 
-    <!-- Js Plugins -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.nice-select.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/jquery.slicknav.js"></script>
-    <script src="/js/mixitup.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=3"></script>
+
 </body>
 
 </html>

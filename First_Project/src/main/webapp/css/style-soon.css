@@ -93,7 +93,7 @@ h6 {
 }
 
 .modal-content {
-    width: 1000px;
+    width: 940px;
     height: 400px;
 }
 
@@ -101,29 +101,22 @@ h6 {
     list-style-type: none;
 }
 
-.modal-header > ul > li > input{
+.modal-header > ul > li > div > *{
+	display: inline-block;
+	width: 150px;
     margin : 5px;
-    border : 0.5px solid rgba(0, 0, 0, 0.1);
-    background-color: rgb(253, 242, 227);
+    /*border : 0.5px solid rgba(0, 0, 0, 0.1);*/
+    /*background-color: rgb(253, 242, 227);*/
 }
 
-.modal-header > ul > li > span{
-    margin : 5px;
-    border : 0.5px solid rgba(0, 0, 0, 0.1);
-    background-color: rgb(253, 242, 227);
+.modal-header > ul > li > div > span{
+	background-color: rgb(253, 242, 227);
 }
-/*
-.modal-header > ul > li:nth-child(1) > span{
-    -ms-user-select: none; 
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
 
-    font-size: 20px;
-    color: chocolate;
+.modal-header > ul > li > div > input{
+    background-color: rgb(253, 242, 227);
+    border : 0.5px solid rgba(0, 0, 0, 0.3);
 }
-*/
 
 .reviewHeade{
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
@@ -132,7 +125,7 @@ h6 {
     color: chocolate;
 }
 
-
+/*
 .modal-header > ul > li:nth-child(2) > span:nth-child(1){
     border: none;
     display: inline-block;
@@ -152,17 +145,29 @@ h6 {
     display: inline-block;
     text-align: center;
     width : 150px;
-}
+}*/
+
+
+
 
 .modal-body {
-    margin: 0 auto;
+    height: 200px
 }
 
-.modal-body > textarea {
+.modal-body > div > span {
+    background-color: rgb(253, 242, 227);
+}
+
+.modal-body > div > textarea {
+	border : 0.5px solid rgba(0, 0, 0, 0.3);
+    background-color: rgb(253, 242, 227);
+
+}
+
+.reviewContent{
+    display: block;
     width: 900px;
     height: 65%;
-    border : 0.5px solid rgba(0, 0, 0, 0.1);
-    background-color: rgb(253, 242, 227);
 }
 
 .upload_content {
@@ -172,10 +177,26 @@ h6 {
 	/* background-color: rgb(253, 242, 227); */    
 }
 
-.insert {
+.update {
     display: none;
+}
+
+.insert {
+    display: block;
 }
 
 .select {
     display: none;
+}
+
+.upload_content {
+	display: none;
+}
+
+.selectCon {
+	display: none;
+}
+
+.nonSelectCon {
+	display: none;
 }

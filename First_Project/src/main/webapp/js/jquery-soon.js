@@ -1,11 +1,12 @@
 $(function() {
 	$(window).ready(function() {
+		review_id();
 		reviewPaging(0);
 	});
-
-//	$(".product__details__tab__desc").on("click", function() {
-//		reviewPaging(0);
-//	});
+	
+	var s_member_id;
+	var s_product_id;
+	var s_create = false;
 	
 	function reviewSend(reviewNum) {
 		$.get(
@@ -17,16 +18,13 @@ $(function() {
 				if(data.length > 0) {
 					var tb = $("<tbody>");
 					for(var i=0; i<data.length; i++) {
-						var $id = data[i].member_id;
 						var $score = data[i].review_score;
 						var $content = data[i].review_content;
+						var $id = data[i].member_id;
 						var $regdate = data[i].review_regdate;
 						var row = $("<tr>").append(
 							$("<td>").text($score),
-//							$("<a href='#' class='aCon' data-bs-toggle='modal' data-bs-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
-							$("<a href='#' class='aCon' data-toggle='modal' data-target='#updateReview' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
-//							$('<input type="button" data-bs-toggle="modal" class="t_btn" value="'+$content+'">'),
-//							$('<button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="t_btn">').text($content),
+							$("<a href='#' class='aCon' data-toggle='modal' data-target='#reviewModal' data-id="+$id+" data-score="+$score+" data-content="+$content+" data-regdate="+$regdate+">").text($content),
 							$("<td>").text($id),
 							$("<td>").text($regdate));
 						tb.append(row);
@@ -36,6 +34,16 @@ $(function() {
 			}
 		);
 	};
+	
+	function review_id() {
+		$.get(
+			'./reviewid.do',
+			function(data) {
+				s_member_id = data.member_id;
+				s_product_id = data.product_id;
+			}
+		);
+	}
 	
 	function reviewPaging(pageNum) {
 		$.get(
@@ -67,24 +75,57 @@ $(function() {
 		reviewPaging(pageNum);
 	});
 	
+	$(".reviewCreateModal").on("click", function() {
+		s_create = true;
+	})
 	
-//	$(".nav-link").click(function() {
-//		$(".nav-link").removeClass("active");
-//		$(this).addClass("active");
-//	});
 	
-	$("#updateReview").on("show.bs.modal", function(e) {
-//		$(".title").attr("value",$(e.relatedTarget).data("title"));
-		$(".id").text($(e.relatedTarget).data("id"));
-		$(".score").attr("value",$(e.relatedTarget).data("score"));
-		$(".regdate").text($(e.relatedTarget).data("regdate"));
-		$(".content").text($(e.relatedTarget).data("content"));
+	$("#reviewModal").on("show.bs.modal", function(e) {
+		var modal_review_id = $(e.relatedTarget).data("id");
+		var modal_review_score = $(e.relatedTarget).data("score");
+		var modal_review_regdate = $(e.relatedTarget).data("regdate");
+		var modal_review_content = $(e.relatedTarget).data("content");
+		if(s_create == true) {                      /* insert */
+			$(".insert").css('display', 'block');
+			$(".update").css('display', 'none');
+			$(".select").css('display', 'none');
+			$(".nonSelectCon").css('display', 'block');
+			$(".selectCon").css('display', 'none');
+			$(".upload_content").css('display', 'block');
+			
+			$(".id").empty();
+			$(".score").attr("value", "");
+			$(".reviewContent").empty();
+			$(".regdate").attr("value", new Date()); /* select */
+		} else if(modal_review_id != s_member_id) {
+			$(".insert").css('display', 'none');
+			$(".update").css('display', 'none');
+			$(".select").css('display', 'block');
+			$(".nonSelectCon").css('display', 'none');
+			$(".selectCon").css('display', 'block');
+			$(".upload_content").css('display', 'none');
+			
+			$(".id").text(modal_review_id);
+			$(".score").text("value",modal_review_score);
+			$(".regdate").text(modal_review_regdate);
+			$(".reviewContent").text(modal_review_content);
+		} else if(modal_review_id == s_member_id) {         /* update */
+			$(".insert").css('display', 'none');
+			$(".update").css('display', 'block');
+			$(".select").css('display', 'none');
+			$(".nonSelectCon").css('display', 'block');
+			$(".selectCon").css('display', 'none');
+			$(".upload_content").css('display', 'block');
+			
+			$(".id").text(modal_review_id);
+			$(".score").attr("value",modal_review_score);
+			$(".regdate").text(modal_review_regdate);
+			$(".reviewContent").text(modal_review_content);
+		}
 		
-		
-		
-//		var id = $(e.relatedTarget).data("id");
-//		var score = $(e.relatedTarget).data("score");
-//		var content = $(e.relatedTarget).data("content");
-//		var regdate = $(e.relatedTarget).data("regdate");
+		s_create = false;
 	});
 });
+	
+
+
