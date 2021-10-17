@@ -59,14 +59,13 @@ public class ReviewController extends HttpServlet{
 	public String getBoardList(@RequestParam(value="page", defaultValue="1", required=false) int page,
 			HttpServletRequest request, Model model) {
 		System.out.println("####[ReviewController.getBoardList]");
-		System.out.println("dot1");
 		/* 상품 번호 */
 		session = request.getSession();
 		product_id = (int) session.getAttribute("product_id");
-		System.out.println("dot2");
 		pageMap.put("page", page);
 		pageMap.put("product_id", product_id);
-		System.out.println("dot3");
+		System.out.println("page : "+page);
+		System.out.println("product_id : "+product_id);
 		model.addAttribute("pageRange", pRange(product_id));
 		model.addAttribute("boardList", reviewService.getBoardlist(pageMap));
 		return "/review/getBoardList";
