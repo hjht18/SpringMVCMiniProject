@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
@@ -22,18 +23,8 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
+    
     <link href="/css/style-soon.css" rel="stylesheet">
-	
-	<!-- Js Plugins -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.nice-select.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/jquery.slicknav.js"></script>
-    <script src="/js/mixitup.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=33"></script>
 	
 </head>
 
@@ -50,7 +41,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large" src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/14_20211015180633" alt="salad">
+                            <img class="product__details__pic__item--large"
+                                src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/14_20211015180633" alt="salad">
                         </div>
                     </div>
                 </div>
@@ -85,7 +77,7 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="true">상세 설명</a>
                             </li>
                             <li class="nav-item">
@@ -112,7 +104,10 @@
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-<!-- ############################################ review Board Start ############################################ -->                                
+                                
+                                
+                                
+                                
                                     <div class="c_image">
 								        <h6 class="image-count">고객 후기 사진(7)</h6>
 								        <hr class="l1">
@@ -147,64 +142,11 @@
 								           </div>
 								        </div>
 								    </div>
-								    
-								    <!-- The Modal(updateReview) -->
-								    <div class="modal fade" id="reviewModal">
-								       <div class="modal-dialog">
-								         <div class="modal-content">
-								     
-								           <!-- Modal Header -->
-								           <div class="modal-header">
-								               <ul>
-                                                   <li> 
-                                                        <div class="reviewHeade update"> 
-                                                            &emsp;게시글 수정
-                                                        </div>
-                                                        <div class="reviewHeade insert">
-                                                            &emsp;게시글 생성
-                                                        </div>
-                                                        <div class="reviewHeade select">
-                                                            &emsp;게시글
-                                                        </div>
-                                                    </li>
-								                    <li>
-                                                        &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
-								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
-								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
-								                    </li> 
-								               </ul>
-								           </div>
-								     
-								           <!-- Modal body -->
-											<form method="post" action="uploadFile.do" enctype="multipart/form-data">
-												<div class="modal-body">
-													게시글 내용<br>
-													<textarea class="content" name="review_content"></textarea>
-													<div class="upload_content">
-														<input type="file" name="uploadFile" /><br>
-													</div>
-												</div>
-											<br>
-								           <!-- Modal footer -->
-								           <div class="modal-footer">
-                                             <div class="update">
-												<input type="submit" class="btn btn-primary" value="수정하기">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="insert">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">생성하기</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="select">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-								           </div>
-											</form>
-								         </div>
-								       </div>
-								     </div> 
                                 
-<!-- ############################################ review Board Start ############################################ -->
+                                
+                                
+                                
+                                
                                 </div>
                             </div>
                         </div>
@@ -214,7 +156,16 @@
     </section>
     <!-- Product Details Section End -->
 
-
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/jquery-soon.js"></script>
 </body>
 
 </html>

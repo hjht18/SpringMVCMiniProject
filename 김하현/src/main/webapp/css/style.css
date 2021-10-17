@@ -1,101 +1,66 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .container {
-  width: 1350px;
-  height: 50px;
+    width: 1350px;
+    height: 50px;
 }
 
 .nav-link {
-  text-decoration: 20px;
-  color: rgb(67, 67, 70);
+    text-decoration : 20px;
+    color: rgb(67, 67, 70);
 }
 
 .nav-item {
-  text-align: center;
-  width: 150px;
+    text-align: center;
+    width : 150px;
 }
 
 .c_image {
-  margin: 0 auto;
-  width: 1300px;
-  height: 350px;
-  /* background-color: rgb(155, 223, 200); */
+    margin: 0 auto;
+    width: 1300px;
+    height: 350px;
+    /* background-color: rgb(155, 223, 200); */
+    
 }
 
 .image {
-  width: 1300px;
-  height: 270px;
-  border: 1px solid brown;
-  padding-top: 10px;
-  padding-left: 10px;
-}
-
-.image_box {
-  width: 1280px;
-  height: 200px;
-  border: 1px solid black;
-  padding-top: 10px;
-  padding-left: 10px;
-  margin-bottom : 10px;
-}
-
-.file_button {
-  width: 280px;
-  height: 38px;
-  border: 2px solid #000;
-  margin-left: 1000px;
-  margin-right: 100px;
-  padding-top: 5px;
-  padding-left: 5px;
-}
-
-.uploadBtn {
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
-.content{
-    outline: 2px dashed #92b0b3 ;
-    outline-offset:-10px;  
-    text-align: center;
-    transition: all .15s ease-in-out;
-    width: 300px;
-    height: 300px;
-    background-color: gray;
+	width: 1300px;
+	height: 270px;
+	border: 1px solid brown;
 }
 
 h6 {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 
 .l1 {
-  border: 0.5x solid rgb(124, 121, 121);
-  opacity: 0.2;
+    border: 0.5x solid rgb(124, 121, 121);
+    opacity: 0.2;
 }
 
-.c_review {
-  margin: 0 auto;
-  width: 1300px;
-  height: 750px;
-  /* background-color: cornflowerblue; */
+.c_review{
+    margin: 0 auto;
+    width : 1300px;
+    height: 750px;
+    /* background-color: cornflowerblue; */
 }
 
 .review_score {
-  margin: 0 auto;
-  width: 400px;
-  height: 180px;
-  border: 1px solid blue;
-  /*background-color: rgb(192, 202, 97);*/
+    margin: 0 auto;
+    width : 400px;
+    height: 180px;
+    border : 1px solid blue;
+    /*background-color: rgb(192, 202, 97);*/
 }
 
 .pagination {
-  display: block;
-  text-align: center;
+    display: block;
+    text-align: center;
 }
 
-.pagination > li {
-  display: inline-block;
-  float: none;
+.pagination > li{
+    display: inline-block;
+    float: none;
 }

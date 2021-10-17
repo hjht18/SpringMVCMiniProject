@@ -22,18 +22,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link href="/css/style-soon.css" rel="stylesheet">
-	
-	<!-- Js Plugins -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.nice-select.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/jquery.slicknav.js"></script>
-    <script src="/js/mixitup.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/jquery-soon.js?ver=33"></script>
+    <link href="/css/style-soon.css?ver=2" rel="stylesheet">
 	
 </head>
 
@@ -85,7 +74,7 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="true">상세 설명</a>
                             </li>
                             <li class="nav-item">
@@ -148,61 +137,46 @@
 								        </div>
 								    </div>
 								    
-								    <!-- The Modal(updateReview) -->
-								    <div class="modal fade" id="reviewModal">
-								       <div class="modal-dialog">
+                                	<!-- The Modal(updateReview) -->
+								    <div class="modal" id="updateReview">
+								       <div class="modal-dialog modal-lg">
 								         <div class="modal-content">
 								     
 								           <!-- Modal Header -->
 								           <div class="modal-header">
 								               <ul>
-                                                   <li> 
-                                                        <div class="reviewHeade update"> 
-                                                            &emsp;게시글 수정
-                                                        </div>
-                                                        <div class="reviewHeade insert">
-                                                            &emsp;게시글 생성
-                                                        </div>
-                                                        <div class="reviewHeade select">
-                                                            &emsp;게시글
-                                                        </div>
-                                                    </li>
-								                    <li>
-                                                        &emsp;&emsp;아이디 <span class="id" name="review_id"></span>
-								                        &emsp;&emsp;평점 <input class="score" type="text" name="review_title">
-								                        &emsp;&emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
-								                    </li> 
+								                   <li>
+								                       제목 <input type="text" class="title" name="review_title">
+								                       
+								                   </li>
+								                   <li>
+								                       평점 <input class="score" type="text" name="review_title">
+								                       &emsp;아이디 <span class="id" name="review_id"></span>
+								                       &emsp;수정 날짜 <span class="regdate" name="review_regdate"></span>
+								                   </li> 
 								               </ul>
 								           </div>
 								     
 								           <!-- Modal body -->
-											<form method="post" action="uploadFile.do" enctype="multipart/form-data">
-												<div class="modal-body">
-													게시글 내용<br>
-													<textarea class="content" name="review_content"></textarea>
-													<div class="upload_content">
-														<input type="file" name="uploadFile" /><br>
-													</div>
-												</div>
-											<br>
+								           <div class="modal-body">
+								               &emsp;&emsp;게시글 내용<br>
+								               &emsp;&emsp;<textarea class="content" name="review_content"></textarea>
+								               &emsp;&emsp;<div class="upload_content">
+								                   upload..
+								               </div>
+								           </div>
+								     
 								           <!-- Modal footer -->
 								           <div class="modal-footer">
-                                             <div class="update">
-												<input type="submit" class="btn btn-primary" value="수정하기">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="insert">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">생성하기</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
-                                             <div class="select">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-                                             </div>
+								               <button type="button" class="btn btn-info" data-bs-dismiss="modal">업로드</button>
+								               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">수정하기</button>
+								               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
 								           </div>
-											</form>
 								         </div>
 								       </div>
 								     </div> 
+                                
+                                
                                 
 <!-- ############################################ review Board Start ############################################ -->
                                 </div>
@@ -214,7 +188,16 @@
     </section>
     <!-- Product Details Section End -->
 
-
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/jquery-soon.js"></script>
 </body>
 
 </html>

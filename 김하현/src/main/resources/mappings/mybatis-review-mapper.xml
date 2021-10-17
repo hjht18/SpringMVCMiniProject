@@ -8,13 +8,25 @@
  	
  	<select id="boardCount" resultType="_int">
  	<![CDATA[
- 		SELECT COUNT(*) FROM review
+ 		SELECT COUNT(*) FROM review WHERE product_id = #{product_id}
  	]]>
  	</select>
  	
  	<select id="getBoardList" resultType="reviewVO">
  	<![CDATA[
- 		SELECT * FROM review WHERE review_id >= #{bottom} AND review_id <= #{top}
+ 		SELECT * FROM review WHERE product_id = ${product_id} AND review_id >= #{bottom} AND review_id <= #{top}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="getMember" resultType="memberVO">
+ 	<![CDATA[
+ 		SELECT * FROM member WHERE member_id = #{member_id} AND password = #{password}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="getProduct" resultType="productVO">
+ 	<![CDATA[
+ 		SELECT * FROM product WHERE product_id = #{product_id}
  	]]>
  	</select>
  	
@@ -29,7 +41,6 @@
         <result property="joinDate" column="joinDate" />
 	</resultMap>
 
+	SELECT * FROM review WHERE product_id = 2 AND review_id >= 1 AND review_id <= 10;
 
-
-	SELECT * FROM review WHERE review_id => 0 AND review_id =< 5;
  -->

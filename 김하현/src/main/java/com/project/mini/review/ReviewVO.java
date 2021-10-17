@@ -2,11 +2,17 @@ package com.project.mini.review;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ReviewVO {
 	private int review_id;
 	private int review_score;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
 	private Date review_regdate;
 	private String review_content;
+	
+	/* member Table foreign */
+	private String member_id;
 
 	public int getReview_id() {
 		return review_id;
@@ -32,6 +38,17 @@ public class ReviewVO {
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
 	}
+	
+	/* member Table foreign getter / setter */
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	
+	
+	
 }
 
 

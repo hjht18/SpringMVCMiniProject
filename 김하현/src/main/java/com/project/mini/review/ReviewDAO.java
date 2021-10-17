@@ -9,6 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.mini.review.login.MemberVO;
+import com.project.mini.review.product.ProductVO;
+
 @Repository
 public class ReviewDAO {
 	@Autowired
@@ -21,17 +24,36 @@ public class ReviewDAO {
 		
 	}
 	
-	public List<ReviewVO> getBoardList(int pageNum) {
+	public List<ReviewVO> getBoardList(Map<String, Integer> pageMap) {
 		System.out.println("##[ReviewDAO.getBoardList]");
 		Map<String, Integer> rangeMap = new HashMap();
-		rangeMap.put("top", pageNum*5);
-		rangeMap.put("bottom", pageNum*5-4);
+		
+		int pageNum = pageMap.get("page");
+		int product_id = pageMap.get("product_id");
+		
+		rangeMap.put("top", pageNum*10);  
+		rangeMap.put("bottom", pageNum*10-9);
+		rangeMap.put("product_id", product_id);
 		return mybatis.selectList("sql.getBoardList", rangeMap);
 	}
 	
-	public int boardCount() {
+	public int boardCount(int product_id) {
 		System.out.println("##[ReviewDAO.boardCount]");
-		return mybatis.selectOne("sql.boardCount");
+		return mybatis.selectOne("sql.boardCount", product_id);
 	}
+	
+	
+	
+	
+	/*=============================================*/
+	/* 로그인 테스트 */
+	public MemberVO getMember(MemberVO memberVO) {
+		return mybatis.selectOne("sql.getMember", memberVO);
+	}
+	
+	public ProductVO getProduct(int productVO) {
+		return mybatis.selectOne("sql.getProduct", productVO);
+	}
+	/*=============================================*/
 	
 }
