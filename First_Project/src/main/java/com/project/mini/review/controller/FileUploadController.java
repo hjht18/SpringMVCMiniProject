@@ -26,7 +26,6 @@ public class FileUploadController {
 //	}
 	
 	
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public ModelAndView upload(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map map = new HashMap();

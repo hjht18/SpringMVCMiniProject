@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,11 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.mini.review.login.MemberVO;
 import com.project.mini.review.product.ProductVO;
 
 @Controller
-public class ReviewController {
+public class ReviewController extends HttpServlet{
 /* ### 변수 선언부 ### */
 	@Autowired
 	private ReviewService reviewService;
@@ -51,26 +54,26 @@ public class ReviewController {
     
 /***************************************************************************************************************************/
 	
-	
 	/* Review CRUD Method */
 	@RequestMapping("/getBoardList.do")
 	public String getBoardList(@RequestParam(value="page", defaultValue="1", required=false) int page,
 			HttpServletRequest request, Model model) {
 		System.out.println("####[ReviewController.getBoardList]");
-		
+		System.out.println("dot1");
 		/* 상품 번호 */
 		session = request.getSession();
 		product_id = (int) session.getAttribute("product_id");
-		
+		System.out.println("dot2");
 		pageMap.put("page", page);
 		pageMap.put("product_id", product_id);
-		
+		System.out.println("dot3");
 		model.addAttribute("pageRange", pRange(product_id));
 		model.addAttribute("boardList", reviewService.getBoardlist(pageMap));
 		return "/review/getBoardList";
 	}
 	
 	
+
 	@RequestMapping("/reviewDelete.do")
 	public ModelAndView reviewDelete(ReviewVO reviewVO) {
 		ModelAndView mav = new ModelAndView();
@@ -85,36 +88,43 @@ public class ReviewController {
 		return mav;
 	}
 	
-	
 	@RequestMapping("/reviewUpdate.do")
-	public ModelAndView reviewUpdate(ReviewVO reviewVO) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView reviewUpdate(ReviewVO reviewVO, HttpServletRequest request) throws IOException {
 		System.out.println("####[ReviewController.reviewUpdate]");
+		ModelAndView mav = new ModelAndView();
+		MultipartRequest mr = mrProvider(request);
+		reviewVO.setReview_id(Integer.parseInt(mr.getParameter("review_id")));
+		reviewVO.setReview_content(mr.getParameter("review_content"));
+		reviewVO.setReview_score(Integer.parseInt(mr.getParameter("review_score")));
 		
 		reviewService.updateReview(reviewVO);
 		
 		mav.setViewName("redirect:/getBoardList.do");
 		return mav;
 	}
+
 	
 	@RequestMapping("/reviewInsert.do")
-	public ModelAndView reviewInsert(ReviewVO reviewVO,
-			@RequestParam(value="r_regdate", required=false) String regdate,
-			@RequestParam(value="r_product_id", required=false) String product_id,
-			HttpServletRequest request, HttpServletResponse response
-			) throws ParseException, IOException {
+	public ModelAndView reviewInsert(ReviewVO reviewVO, HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		ModelAndView mav = new ModelAndView();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
-		Date now = sdf.parse(regdate);
-		reviewVO.setProduct_id(Integer.parseInt(product_id));
+//		MultipartRequest mr = new MultipartRequest(request, "c:\\tmp\\upload", 1024*1024*10, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest mr = mrProvider(request);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		Date now = sdf.parse(mr.getParameter("r_regdate"));
+		
+		reviewVO.setProduct_id(Integer.parseInt(mr.getParameter("r_product_id")));
+		reviewVO.setMember_id(mr.getParameter("member_id"));
+		reviewVO.setReview_score(Integer.parseInt(mr.getParameter("review_score")));
 		reviewVO.setReview_regdate(now);
+		reviewVO.setReview_content(mr.getParameter("review_content"));
 		
 		reviewService.insertReview(reviewVO);
+		
+		fileUpload(request, response);
 		
 		mav.setViewName("redirect:/getBoardList.do");
 		return mav;
 	}
-	
 	
 	
 	/* AJAX Method */
@@ -250,30 +260,27 @@ public class ReviewController {
 		return review_map;
 	}
 	
-    public String fileUp(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("review_id : "+request.getParameter("review_id"));
-		
+    public void fileUpload(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setAttribute("status","error");
 		if( bDebug ) { System.out.println("Start : FileUploadServlet"); }
-		
 		// =======================================
 		// 멀티파트를 전송했는지 확인
         if (!ServletFileUpload.isMultipartContent(request)) {
             // if not, we stop here
             PrintWriter writer = response.getWriter();
-            
             request.setAttribute("message","multipart/form-data 로 전송해야 합니다.");
-            
             writer.println("Error: multipart/form-data 로 전송해야 합니다.");
             writer.flush();
-            return null;
+            return;
         }
-        
         // =======================================
         // 업로드 설정
         DiskFileItemFactory dfif = new DiskFileItemFactory();
         dfif.setSizeThreshold(MEMORY_THRESHOLD); // sets memory threshold - beyond which files are stored in disk
         dfif.setRepository(new File(System.getProperty("java.io.tmpdir")));// 임시 저장 폴더 설정
+        
+        
+        
         
         // 설정을 넣어서 업로드 개체를 만든다.
         ServletFileUpload upload = new ServletFileUpload(dfif);
@@ -314,8 +321,6 @@ public class ReviewController {
                     	
                     } else {
                     	// 파일이 사이즈가 있으면 진행.. 
-                    	               	
-	                    	
             			
 	                    	// 업로드된 파일명을 알아온다.
                     		long lFileSize      = item.getSize(); // 파일 사이즈
@@ -361,7 +366,8 @@ public class ReviewController {
 		                        item.delete(); // request 한 파일도 삭제한다.
 		                        
 		                        if ( savedFile.exists()) {
-		                        	if( bDebug ) { request.setAttribute("status","success");System.out.println("Upload has been done successfully!");}
+		                        	if( bDebug ) { request.setAttribute("status","success");
+		                        	System.out.println("Upload has been done successfully!");}
 		                        	request.setAttribute("message","Upload has been done successfully! " + filePath );
 		                        } else {
 		                        	if( bDebug ) { System.out.println("Error : Create file");}
@@ -378,8 +384,14 @@ public class ReviewController {
         	if( bDebug ) { System.out.println("Upload Error");e.printStackTrace();}
         	request.setAttribute("message","There was an error: " + e.getMessage());
         }
-        return null;
+    }
+    
+    
+    public MultipartRequest mrProvider(HttpServletRequest request) throws IOException {
+    	MultipartRequest mr = new MultipartRequest(request, "c:\\tmp\\upload", 1024*1024*10, "UTF-8", new DefaultFileRenamePolicy());
+    	return mr;
     }
 	
 }
+
 

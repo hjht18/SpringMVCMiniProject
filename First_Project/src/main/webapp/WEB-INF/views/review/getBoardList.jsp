@@ -34,7 +34,6 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/jquery-soon.js?ver=2"></script>
-	
 </head>
 
 <body>
@@ -152,7 +151,7 @@
 									<div class="modal fade" id="reviewModal">
 									   <div class="modal-dialog">
 									     <div class="modal-content">
-									         <form class="modal-form" method="POST">       <!-- form 여기 @#@#@#@#@#@#@#@ -->
+									         <form class="modal-form" method="POST" enctype="multipart/form-data">       <!-- form 여기 @#@#@#@#@#@#@#@ -->
 									       <!-- Modal Header -->
 									           <div class="modal-header">
 									               <ul>
@@ -195,9 +194,13 @@
 									               <div class="selectCon">
 									               		<span class="reviewContent"></span>
 									               </div>
+									               
+									               
 									               <div class="nonSelectCon">
 									               		<textarea class="reviewContent" name="review_content"></textarea>
 									               </div>
+									               
+									               
 												   <div class="upload_content">
 														<input type="file" name="uploadFile" /><br>
 													</div>

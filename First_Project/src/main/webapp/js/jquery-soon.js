@@ -39,6 +39,7 @@ $(function() {
 		);
 	};
 	
+	
 	function review_id() {
 		$.get(
 			'./reviewid.do',
@@ -65,7 +66,7 @@ $(function() {
 	function nowDate() {
 		var nowDate = new Date();
 		now = nowDate.getFullYear();
-		now += '-' + nowDate.getMonth() +1;
+		now += '-' + (nowDate.getMonth()+1);
 		now += '-' + nowDate.getDate();
 		now += ' ' + nowDate.getHours();
 		now += ':' + nowDate.getMinutes();
@@ -165,6 +166,7 @@ $(function() {
 	
 	$(".rus").on("click", function() {
 		$(".modal-form").attr("action", "./reviewUpdate.do");
+//		$(".modal-form").removeAttr("enctype");
 	});
 	
 	$(".rds").on("click", function() {
@@ -173,8 +175,10 @@ $(function() {
 	
 	$(".ris").on("click", function() {
 		$(".modal-form").attr("action", "./reviewInsert.do");
+//		$(".modal-form").attr("enctype", "multipart/form-data");
 	});
 });
 	
+
 
 
